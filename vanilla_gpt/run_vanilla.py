@@ -110,7 +110,7 @@ def save_results_to_csv(results, output_file):
 # -------------------------
 def main():
     # Input CSV file (update path as needed)
-    input_csv = "numerical.csv"
+    input_csv = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "initial_tests", "numerical.csv")
     
     # Check if file exists
     if not os.path.exists(input_csv):
@@ -118,7 +118,7 @@ def main():
         return
     
     # Create outputs directory
-    os.makedirs("outputs", exist_ok=True)
+    os.makedirs(os.path.join(os.path.dirname(os.path.abspath(__file__)), "outputs"), exist_ok=True)
     
     # Read prompts from CSV
     print(f"Reading prompts from {input_csv}...")
@@ -130,7 +130,7 @@ def main():
     
     # Generate output filename with timestamp
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    output_file = f"outputs/deepseek_results_{timestamp}.csv"
+    output_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), "outputs", f"deepseek_results_{timestamp}.csv")
     
     # Save results
     save_results_to_csv(results, output_file)
