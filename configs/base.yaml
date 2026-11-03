@@ -1,0 +1,43 @@
+# Base config. Every run copies this to runs/<run_id>/config.yaml and overrides what it changes.
+seed: 42
+
+models:
+  generator: llama3.1:8b-instruct-q4_K_M   # frozen 2026-10-30; start server with scripts/start_ollama.ps1
+  generator_num_ctx: 3072
+  generator_temperature: 0.0
+  max_output_tokens: 400
+  extractor: same_as_generator              # separate step, own fixed prompt
+  embedder: BAAI/bge-m3
+  nli_verifier: lytang/MiniCheck-Flan-T5-Large   # must differ from the generator
+
+retrieval:
+  mode: hybrid        # dense | bm25 | hybrid; fixed after pilot recall@5
+  k: 5
+
+verification:
+  tau: 0.5            # tuned on dev only, then frozen
+  tolerance:
+    count_abs: 1
+    price_rel: 0.01
+    simulated_rel: 0.01
+    rate_abs_pp: 0.5
+
+simulation:
+  lead_time_days: 7
+  review_cover_days: 7
+  service_level_z: 1.645
+  demand_window_days: 28
+  warmup_days: 28
+
+m5:
+  n_stores: 3
+  n_items: 300
+  weeks_per_series: 52
+dataco:
+  n_orders: 20000
+
+prompts:
+  generate: gen_v1
+  extract: extract_v1
+  abstain: abstain_v1
+  selfcheck: selfcheck_v1

@@ -1,0 +1,859 @@
+
+
+# This dataset contains information about orders that were either canceled or suspected of fraud. The data includes details such as order ID, order status, shipping mode, market, order region, actual and scheduled shipping days, raw delay days, and stratum classification based on delay.
+
+Order Id,Order Status,Shipping Mode,Market,Order Region,Days for shipping (real),Days for shipment (scheduled),raw_delay_days,stratum
+69,SUSPECTED_FRAUD,Standard Class,LATAM,South America,5,4,1,delay_gt0
+423,SUSPECTED_FRAUD,Same Day,LATAM,Caribbean,0,0,0,delay_eq0
+453,SUSPECTED_FRAUD,Standard Class,LATAM,Central America,4,4,0,delay_eq0
+527,CANCELED,Standard Class,LATAM,South America,3,4,-1,delay_lt0
+552,CANCELED,Standard Class,LATAM,Central America,3,4,-1,delay_lt0
+580,SUSPECTED_FRAUD,Standard Class,LATAM,Central America,6,4,2,delay_gt0
+667,CANCELED,Same Day,LATAM,Central America,1,0,1,delay_gt0
+717,CANCELED,Standard Class,LATAM,Central America,3,4,-1,delay_lt0
+753,CANCELED,First Class,LATAM,Central America,2,1,1,delay_gt0
+940,SUSPECTED_FRAUD,Standard Class,LATAM,Central America,6,4,2,delay_gt0
+955,CANCELED,Standard Class,LATAM,Caribbean,6,4,2,delay_gt0
+962,CANCELED,Second Class,LATAM,South America,3,2,1,delay_gt0
+1013,CANCELED,Standard Class,LATAM,Caribbean,4,4,0,delay_eq0
+1063,SUSPECTED_FRAUD,Standard Class,LATAM,South America,4,4,0,delay_eq0
+1074,SUSPECTED_FRAUD,First Class,LATAM,Caribbean,2,1,1,delay_gt0
+1083,SUSPECTED_FRAUD,Standard Class,LATAM,Central America,4,4,0,delay_eq0
+1117,SUSPECTED_FRAUD,Standard Class,LATAM,Central America,3,4,-1,delay_lt0
+1383,CANCELED,Standard Class,LATAM,South America,4,4,0,delay_eq0
+1398,SUSPECTED_FRAUD,Standard Class,LATAM,South America,4,4,0,delay_eq0
+1509,SUSPECTED_FRAUD,First Class,LATAM,Central America,2,1,1,delay_gt0
+1635,SUSPECTED_FRAUD,Standard Class,LATAM,Central America,6,4,2,delay_gt0
+1638,SUSPECTED_FRAUD,Standard Class,LATAM,Central America,4,4,0,delay_eq0
+1747,SUSPECTED_FRAUD,Standard Class,LATAM,Central America,3,4,-1,delay_lt0
+1859,CANCELED,Standard Class,LATAM,Central America,5,4,1,delay_gt0
+1991,SUSPECTED_FRAUD,Standard Class,LATAM,Central America,2,4,-2,delay_lt0
+2052,SUSPECTED_FRAUD,Standard Class,LATAM,South America,3,4,-1,delay_lt0
+2112,CANCELED,Standard Class,LATAM,South America,3,4,-1,delay_lt0
+2144,CANCELED,First Class,LATAM,South America,2,1,1,delay_gt0
+2170,CANCELED,Standard Class,LATAM,South America,6,4,2,delay_gt0
+2332,SUSPECTED_FRAUD,Standard Class,LATAM,Central America,3,4,-1,delay_lt0
+2371,CANCELED,Standard Class,LATAM,Central America,2,4,-2,delay_lt0
+2416,SUSPECTED_FRAUD,Second Class,LATAM,South America,2,2,0,delay_eq0
+2502,SUSPECTED_FRAUD,Standard Class,LATAM,Central America,3,4,-1,delay_lt0
+2520,SUSPECTED_FRAUD,Standard Class,LATAM,South America,6,4,2,delay_gt0
+2559,CANCELED,Standard Class,LATAM,Caribbean,5,4,1,delay_gt0
+2587,CANCELED,Standard Class,LATAM,South America,3,4,-1,delay_lt0
+2664,CANCELED,Second Class,LATAM,Central America,5,2,3,delay_gt0
+2691,CANCELED,Standard Class,LATAM,South America,2,4,-2,delay_lt0
+2721,SUSPECTED_FRAUD,Same Day,LATAM,South America,1,0,1,delay_gt0
+2784,CANCELED,Standard Class,LATAM,South America,5,4,1,delay_gt0
+2911,SUSPECTED_FRAUD,Standard Class,LATAM,South America,2,4,-2,delay_lt0
+3201,SUSPECTED_FRAUD,Standard Class,LATAM,South America,2,4,-2,delay_lt0
+3268,SUSPECTED_FRAUD,First Class,LATAM,Caribbean,2,1,1,delay_gt0
+3295,CANCELED,Second Class,LATAM,South America,6,2,4,delay_gt0
+3551,CANCELED,Standard Class,LATAM,South America,2,4,-2,delay_lt0
+3553,CANCELED,Standard Class,LATAM,South America,4,4,0,delay_eq0
+3616,CANCELED,Standard Class,LATAM,Central America,2,4,-2,delay_lt0
+3625,SUSPECTED_FRAUD,Standard Class,LATAM,Central America,6,4,2,delay_gt0
+3757,SUSPECTED_FRAUD,First Class,LATAM,Caribbean,2,1,1,delay_gt0
+3797,CANCELED,Standard Class,LATAM,South America,3,4,-1,delay_lt0
+4067,SUSPECTED_FRAUD,First Class,LATAM,Central America,2,1,1,delay_gt0
+4071,SUSPECTED_FRAUD,Second Class,LATAM,Central America,2,2,0,delay_eq0
+4205,CANCELED,Standard Class,LATAM,Caribbean,6,4,2,delay_gt0
+4253,SUSPECTED_FRAUD,Standard Class,LATAM,Central America,4,4,0,delay_eq0
+4255,SUSPECTED_FRAUD,Standard Class,LATAM,Central America,6,4,2,delay_gt0
+4286,CANCELED,Second Class,LATAM,Caribbean,2,2,0,delay_eq0
+4292,SUSPECTED_FRAUD,Second Class,LATAM,Central America,3,2,1,delay_gt0
+4304,SUSPECTED_FRAUD,Standard Class,LATAM,Caribbean,5,4,1,delay_gt0
+4529,CANCELED,Standard Class,LATAM,Central America,5,4,1,delay_gt0
+4558,SUSPECTED_FRAUD,Second Class,LATAM,Caribbean,4,2,2,delay_gt0
+4585,CANCELED,Second Class,LATAM,Central America,6,2,4,delay_gt0
+4591,CANCELED,Standard Class,LATAM,Caribbean,2,4,-2,delay_lt0
+4744,SUSPECTED_FRAUD,Standard Class,LATAM,Central America,5,4,1,delay_gt0
+4879,CANCELED,Second Class,LATAM,Caribbean,5,2,3,delay_gt0
+5153,CANCELED,Standard Class,LATAM,Central America,4,4,0,delay_eq0
+5197,SUSPECTED_FRAUD,First Class,LATAM,Central America,2,1,1,delay_gt0
+5205,SUSPECTED_FRAUD,Standard Class,LATAM,South America,6,4,2,delay_gt0
+5270,CANCELED,Standard Class,LATAM,South America,6,4,2,delay_gt0
+5323,SUSPECTED_FRAUD,First Class,LATAM,Central America,2,1,1,delay_gt0
+5331,CANCELED,Standard Class,LATAM,South America,2,4,-2,delay_lt0
+5524,CANCELED,Standard Class,LATAM,Caribbean,5,4,1,delay_gt0
+5613,CANCELED,Standard Class,LATAM,South America,4,4,0,delay_eq0
+5731,CANCELED,Same Day,LATAM,Central America,1,0,1,delay_gt0
+5761,CANCELED,Standard Class,LATAM,South America,2,4,-2,delay_lt0
+5920,CANCELED,Standard Class,LATAM,South America,6,4,2,delay_gt0
+5971,CANCELED,Second Class,LATAM,Central America,2,2,0,delay_eq0
+5981,SUSPECTED_FRAUD,Standard Class,LATAM,Central America,2,4,-2,delay_lt0
+6101,SUSPECTED_FRAUD,Standard Class,LATAM,Caribbean,2,4,-2,delay_lt0
+6176,SUSPECTED_FRAUD,Standard Class,LATAM,Central America,2,4,-2,delay_lt0
+6265,CANCELED,Standard Class,LATAM,Central America,6,4,2,delay_gt0
+6329,SUSPECTED_FRAUD,Standard Class,LATAM,Caribbean,5,4,1,delay_gt0
+6396,SUSPECTED_FRAUD,Standard Class,LATAM,Central America,2,4,-2,delay_lt0
+6403,SUSPECTED_FRAUD,Second Class,LATAM,Central America,4,2,2,delay_gt0
+6416,SUSPECTED_FRAUD,Second Class,LATAM,Central America,2,2,0,delay_eq0
+6474,CANCELED,Second Class,LATAM,South America,5,2,3,delay_gt0
+6514,CANCELED,Standard Class,LATAM,Central America,5,4,1,delay_gt0
+6550,CANCELED,First Class,LATAM,South America,2,1,1,delay_gt0
+6581,SUSPECTED_FRAUD,Same Day,LATAM,Central America,0,0,0,delay_eq0
+6750,CANCELED,Standard Class,LATAM,Central America,6,4,2,delay_gt0
+6842,SUSPECTED_FRAUD,First Class,LATAM,Caribbean,2,1,1,delay_gt0
+6860,SUSPECTED_FRAUD,Standard Class,LATAM,Caribbean,6,4,2,delay_gt0
+7067,CANCELED,Standard Class,LATAM,Caribbean,3,4,-1,delay_lt0
+7100,CANCELED,Standard Class,LATAM,Caribbean,6,4,2,delay_gt0
+7287,SUSPECTED_FRAUD,Second Class,LATAM,Central America,3,2,1,delay_gt0
+7360,CANCELED,Second Class,LATAM,Central America,6,2,4,delay_gt0
+7481,SUSPECTED_FRAUD,Second Class,LATAM,Central America,2,2,0,delay_eq0
+7643,CANCELED,Same Day,LATAM,South America,1,0,1,delay_gt0
+7692,CANCELED,Standard Class,LATAM,Caribbean,3,4,-1,delay_lt0
+7883,CANCELED,Second Class,LATAM,Central America,4,2,2,delay_gt0
+7889,CANCELED,Second Class,LATAM,Central America,5,2,3,delay_gt0
+7901,CANCELED,Standard Class,LATAM,Central America,2,4,-2,delay_lt0
+7943,CANCELED,Standard Class,LATAM,Central America,4,4,0,delay_eq0
+8015,SUSPECTED_FRAUD,Second Class,LATAM,Central America,6,2,4,delay_gt0
+8207,SUSPECTED_FRAUD,Standard Class,LATAM,Central America,3,4,-1,delay_lt0
+8215,CANCELED,Same Day,LATAM,Central America,1,0,1,delay_gt0
+8518,CANCELED,Standard Class,LATAM,Central America,4,4,0,delay_eq0
+8750,SUSPECTED_FRAUD,Standard Class,LATAM,Central America,6,4,2,delay_gt0
+9079,CANCELED,Second Class,LATAM,Central America,5,2,3,delay_gt0
+9096,SUSPECTED_FRAUD,Second Class,LATAM,South America,2,2,0,delay_eq0
+9131,SUSPECTED_FRAUD,First Class,LATAM,South America,2,1,1,delay_gt0
+9222,SUSPECTED_FRAUD,First Class,LATAM,Central America,2,1,1,delay_gt0
+9390,SUSPECTED_FRAUD,First Class,LATAM,Central America,2,1,1,delay_gt0
+9440,CANCELED,First Class,LATAM,South America,2,1,1,delay_gt0
+9702,CANCELED,First Class,LATAM,South America,2,1,1,delay_gt0
+9768,SUSPECTED_FRAUD,First Class,LATAM,Central America,2,1,1,delay_gt0
+9781,CANCELED,Standard Class,LATAM,Caribbean,2,4,-2,delay_lt0
+9782,SUSPECTED_FRAUD,Standard Class,LATAM,Caribbean,3,4,-1,delay_lt0
+9788,CANCELED,Standard Class,LATAM,South America,4,4,0,delay_eq0
+9807,SUSPECTED_FRAUD,Standard Class,LATAM,Central America,3,4,-1,delay_lt0
+10014,SUSPECTED_FRAUD,Standard Class,LATAM,South America,5,4,1,delay_gt0
+10102,CANCELED,Standard Class,LATAM,South America,3,4,-1,delay_lt0
+10106,CANCELED,Standard Class,LATAM,South America,2,4,-2,delay_lt0
+10116,SUSPECTED_FRAUD,Standard Class,LATAM,South America,2,4,-2,delay_lt0
+10215,SUSPECTED_FRAUD,Standard Class,LATAM,South America,6,4,2,delay_gt0
+10277,SUSPECTED_FRAUD,Second Class,LATAM,South America,3,2,1,delay_gt0
+10562,SUSPECTED_FRAUD,Standard Class,Europe,Western Europe,3,4,-1,delay_lt0
+10836,SUSPECTED_FRAUD,Second Class,Europe,Western Europe,2,2,0,delay_eq0
+10917,SUSPECTED_FRAUD,Same Day,Europe,Western Europe,0,0,0,delay_eq0
+10938,CANCELED,Standard Class,Europe,Southern Europe,4,4,0,delay_eq0
+10939,CANCELED,Standard Class,Europe,Southern Europe,5,4,1,delay_gt0
+10948,SUSPECTED_FRAUD,Standard Class,Europe,Western Europe,4,4,0,delay_eq0
+10986,SUSPECTED_FRAUD,First Class,Europe,Southern Europe,2,1,1,delay_gt0
+10998,SUSPECTED_FRAUD,Standard Class,Europe,Western Europe,4,4,0,delay_eq0
+11135,CANCELED,Standard Class,Europe,Northern Europe,6,4,2,delay_gt0
+11140,SUSPECTED_FRAUD,Second Class,Europe,Western Europe,6,2,4,delay_gt0
+11184,SUSPECTED_FRAUD,Standard Class,Europe,Western Europe,5,4,1,delay_gt0
+11286,CANCELED,Second Class,Europe,Western Europe,2,2,0,delay_eq0
+11331,SUSPECTED_FRAUD,Second Class,Europe,Northern Europe,2,2,0,delay_eq0
+11342,SUSPECTED_FRAUD,Standard Class,Europe,Western Europe,3,4,-1,delay_lt0
+11405,SUSPECTED_FRAUD,Standard Class,Europe,Western Europe,6,4,2,delay_gt0
+11593,SUSPECTED_FRAUD,Standard Class,Europe,Southern Europe,4,4,0,delay_eq0
+11629,CANCELED,Standard Class,Europe,Northern Europe,5,4,1,delay_gt0
+11704,SUSPECTED_FRAUD,Standard Class,Europe,Western Europe,5,4,1,delay_gt0
+11734,CANCELED,Standard Class,Europe,Northern Europe,5,4,1,delay_gt0
+11852,SUSPECTED_FRAUD,Standard Class,Europe,Western Europe,3,4,-1,delay_lt0
+11871,SUSPECTED_FRAUD,Standard Class,Europe,Northern Europe,2,4,-2,delay_lt0
+11977,SUSPECTED_FRAUD,Standard Class,Europe,Western Europe,3,4,-1,delay_lt0
+11988,SUSPECTED_FRAUD,First Class,Europe,Southern Europe,2,1,1,delay_gt0
+12030,CANCELED,Same Day,Europe,Southern Europe,1,0,1,delay_gt0
+12061,CANCELED,First Class,Europe,Western Europe,2,1,1,delay_gt0
+12092,CANCELED,Standard Class,Europe,Northern Europe,3,4,-1,delay_lt0
+12102,CANCELED,Second Class,Europe,Western Europe,3,2,1,delay_gt0
+12231,CANCELED,Standard Class,Europe,Western Europe,2,4,-2,delay_lt0
+12247,SUSPECTED_FRAUD,Standard Class,Europe,Northern Europe,3,4,-1,delay_lt0
+12330,CANCELED,Standard Class,Europe,Western Europe,6,4,2,delay_gt0
+12462,CANCELED,Second Class,Europe,Southern Europe,3,2,1,delay_gt0
+12794,SUSPECTED_FRAUD,Standard Class,Europe,Northern Europe,5,4,1,delay_gt0
+13088,CANCELED,Second Class,Europe,Northern Europe,4,2,2,delay_gt0
+13298,CANCELED,Standard Class,Europe,Southern Europe,4,4,0,delay_eq0
+13394,SUSPECTED_FRAUD,Standard Class,Europe,Western Europe,5,4,1,delay_gt0
+13521,SUSPECTED_FRAUD,Standard Class,Europe,Western Europe,2,4,-2,delay_lt0
+13859,SUSPECTED_FRAUD,First Class,Europe,Western Europe,2,1,1,delay_gt0
+13968,SUSPECTED_FRAUD,Second Class,Europe,Western Europe,4,2,2,delay_gt0
+14000,CANCELED,Same Day,Europe,Western Europe,0,0,0,delay_eq0
+14159,SUSPECTED_FRAUD,Same Day,Europe,Northern Europe,1,0,1,delay_gt0
+14290,CANCELED,Standard Class,Europe,Western Europe,6,4,2,delay_gt0
+14317,SUSPECTED_FRAUD,Standard Class,Europe,Western Europe,3,4,-1,delay_lt0
+14448,SUSPECTED_FRAUD,Second Class,Europe,Western Europe,4,2,2,delay_gt0
+14499,CANCELED,Standard Class,Europe,Western Europe,5,4,1,delay_gt0
+14512,CANCELED,Standard Class,Europe,Western Europe,3,4,-1,delay_lt0
+14561,SUSPECTED_FRAUD,Standard Class,Europe,Northern Europe,2,4,-2,delay_lt0
+14675,SUSPECTED_FRAUD,Standard Class,Europe,Western Europe,6,4,2,delay_gt0
+15087,CANCELED,Standard Class,Europe,Western Europe,3,4,-1,delay_lt0
+15137,CANCELED,Second Class,Europe,Southern Europe,3,2,1,delay_gt0
+15148,CANCELED,Standard Class,Europe,Western Europe,4,4,0,delay_eq0
+15252,CANCELED,Second Class,Europe,Western Europe,3,2,1,delay_gt0
+15278,SUSPECTED_FRAUD,Standard Class,Europe,Western Europe,4,4,0,delay_eq0
+15329,CANCELED,Same Day,Europe,Western Europe,1,0,1,delay_gt0
+15384,CANCELED,Second Class,Europe,Northern Europe,5,2,3,delay_gt0
+15543,SUSPECTED_FRAUD,Standard Class,Europe,Southern Europe,4,4,0,delay_eq0
+15640,SUSPECTED_FRAUD,Second Class,Europe,Western Europe,6,2,4,delay_gt0
+15656,CANCELED,Standard Class,Europe,Western Europe,2,4,-2,delay_lt0
+15722,SUSPECTED_FRAUD,Same Day,Europe,Southern Europe,0,0,0,delay_eq0
+15810,SUSPECTED_FRAUD,First Class,Europe,Western Europe,2,1,1,delay_gt0
+15826,CANCELED,Second Class,Europe,Northern Europe,2,2,0,delay_eq0
+16193,SUSPECTED_FRAUD,Standard Class,Europe,Western Europe,4,4,0,delay_eq0
+16248,SUSPECTED_FRAUD,Standard Class,Europe,Southern Europe,4,4,0,delay_eq0
+16277,CANCELED,Standard Class,Europe,Northern Europe,3,4,-1,delay_lt0
+16308,SUSPECTED_FRAUD,Standard Class,Europe,Western Europe,4,4,0,delay_eq0
+16363,CANCELED,Standard Class,Europe,Western Europe,4,4,0,delay_eq0
+16459,SUSPECTED_FRAUD,Standard Class,Europe,Southern Europe,5,4,1,delay_gt0
+16478,CANCELED,First Class,Europe,Western Europe,2,1,1,delay_gt0
+16585,CANCELED,Same Day,Europe,Western Europe,0,0,0,delay_eq0
+16748,SUSPECTED_FRAUD,Standard Class,Europe,Western Europe,4,4,0,delay_eq0
+16811,SUSPECTED_FRAUD,Standard Class,Europe,Northern Europe,2,4,-2,delay_lt0
+16814,SUSPECTED_FRAUD,Same Day,Europe,Western Europe,0,0,0,delay_eq0
+16819,SUSPECTED_FRAUD,Same Day,Europe,Western Europe,1,0,1,delay_gt0
+17068,CANCELED,Standard Class,Europe,Western Europe,4,4,0,delay_eq0
+17102,CANCELED,Standard Class,Europe,Southern Europe,3,4,-1,delay_lt0
+17104,SUSPECTED_FRAUD,Standard Class,Europe,Southern Europe,5,4,1,delay_gt0
+17197,SUSPECTED_FRAUD,Standard Class,Europe,Western Europe,3,4,-1,delay_lt0
+17241,CANCELED,Same Day,Europe,Western Europe,1,0,1,delay_gt0
+17257,CANCELED,Standard Class,Europe,Western Europe,3,4,-1,delay_lt0
+17478,SUSPECTED_FRAUD,Standard Class,Europe,Western Europe,4,4,0,delay_eq0
+17753,SUSPECTED_FRAUD,Standard Class,Europe,Southern Europe,4,4,0,delay_eq0
+17790,CANCELED,Second Class,Europe,Western Europe,6,2,4,delay_gt0
+18097,CANCELED,Second Class,Europe,Western Europe,3,2,1,delay_gt0
+18219,CANCELED,Standard Class,Europe,Western Europe,5,4,1,delay_gt0
+18237,CANCELED,Standard Class,Europe,Southern Europe,3,4,-1,delay_lt0
+18463,SUSPECTED_FRAUD,Standard Class,Europe,Southern Europe,4,4,0,delay_eq0
+18521,SUSPECTED_FRAUD,Same Day,Europe,Western Europe,0,0,0,delay_eq0
+18617,SUSPECTED_FRAUD,Standard Class,Europe,Northern Europe,3,4,-1,delay_lt0
+18704,SUSPECTED_FRAUD,Standard Class,Europe,Western Europe,5,4,1,delay_gt0
+18723,SUSPECTED_FRAUD,Standard Class,Europe,Western Europe,4,4,0,delay_eq0
+19169,CANCELED,First Class,Europe,Western Europe,2,1,1,delay_gt0
+19218,SUSPECTED_FRAUD,Standard Class,Europe,Southern Europe,4,4,0,delay_eq0
+19245,CANCELED,First Class,Europe,Western Europe,2,1,1,delay_gt0
+19366,SUSPECTED_FRAUD,Standard Class,Europe,Western Europe,2,4,-2,delay_lt0
+19434,SUSPECTED_FRAUD,First Class,Europe,Western Europe,2,1,1,delay_gt0
+19464,SUSPECTED_FRAUD,First Class,Europe,Western Europe,2,1,1,delay_gt0
+19630,SUSPECTED_FRAUD,Standard Class,Europe,Southern Europe,6,4,2,delay_gt0
+19664,SUSPECTED_FRAUD,Second Class,Europe,Northern Europe,5,2,3,delay_gt0
+19734,SUSPECTED_FRAUD,Standard Class,Europe,Western Europe,5,4,1,delay_gt0
+19931,SUSPECTED_FRAUD,Standard Class,Europe,Southern Europe,2,4,-2,delay_lt0
+20042,CANCELED,Standard Class,Europe,Western Europe,3,4,-1,delay_lt0
+20154,SUSPECTED_FRAUD,Standard Class,Europe,Northern Europe,5,4,1,delay_gt0
+20289,SUSPECTED_FRAUD,Standard Class,Europe,Northern Europe,5,4,1,delay_gt0
+20308,SUSPECTED_FRAUD,Standard Class,Pacific Asia,Southeast Asia,4,4,0,delay_eq0
+20331,SUSPECTED_FRAUD,Second Class,Pacific Asia,Southeast Asia,2,2,0,delay_eq0
+20422,CANCELED,Second Class,Pacific Asia,Eastern Asia,3,2,1,delay_gt0
+20429,CANCELED,Standard Class,Pacific Asia,South Asia,5,4,1,delay_gt0
+20434,SUSPECTED_FRAUD,Same Day,Pacific Asia,Oceania,0,0,0,delay_eq0
+20452,SUSPECTED_FRAUD,Standard Class,Pacific Asia,Southeast Asia,3,4,-1,delay_lt0
+20507,SUSPECTED_FRAUD,Standard Class,Pacific Asia,Oceania,3,4,-1,delay_lt0
+20521,SUSPECTED_FRAUD,First Class,Pacific Asia,Oceania,2,1,1,delay_gt0
+20908,SUSPECTED_FRAUD,First Class,Pacific Asia,Eastern Asia,2,1,1,delay_gt0
+20949,SUSPECTED_FRAUD,Second Class,Pacific Asia,Southeast Asia,5,2,3,delay_gt0
+20950,CANCELED,Second Class,Pacific Asia,Southeast Asia,6,2,4,delay_gt0
+20958,CANCELED,Standard Class,Pacific Asia,Eastern Asia,4,4,0,delay_eq0
+20978,CANCELED,First Class,Pacific Asia,Southeast Asia,2,1,1,delay_gt0
+21023,SUSPECTED_FRAUD,Standard Class,Pacific Asia,Eastern Asia,4,4,0,delay_eq0
+21042,CANCELED,Same Day,Pacific Asia,Oceania,0,0,0,delay_eq0
+21131,SUSPECTED_FRAUD,Standard Class,Pacific Asia,South Asia,2,4,-2,delay_lt0
+21150,SUSPECTED_FRAUD,Standard Class,Pacific Asia,Southeast Asia,6,4,2,delay_gt0
+21304,SUSPECTED_FRAUD,Second Class,Pacific Asia,Eastern Asia,5,2,3,delay_gt0
+21359,SUSPECTED_FRAUD,Standard Class,Pacific Asia,Southeast Asia,5,4,1,delay_gt0
+21362,CANCELED,First Class,Pacific Asia,South Asia,2,1,1,delay_gt0
+21403,SUSPECTED_FRAUD,Standard Class,Pacific Asia,Oceania,4,4,0,delay_eq0
+21539,CANCELED,Standard Class,Pacific Asia,Southeast Asia,5,4,1,delay_gt0
+21644,SUSPECTED_FRAUD,Standard Class,Pacific Asia,Oceania,5,4,1,delay_gt0
+21677,CANCELED,Standard Class,Pacific Asia,Southeast Asia,3,4,-1,delay_lt0
+21762,SUSPECTED_FRAUD,Second Class,Pacific Asia,Eastern Asia,3,2,1,delay_gt0
+21998,CANCELED,Standard Class,Pacific Asia,Eastern Asia,4,4,0,delay_eq0
+22034,SUSPECTED_FRAUD,Standard Class,Pacific Asia,Southeast Asia,5,4,1,delay_gt0
+22075,CANCELED,Second Class,Pacific Asia,Southeast Asia,6,2,4,delay_gt0
+22333,CANCELED,Standard Class,Pacific Asia,Eastern Asia,4,4,0,delay_eq0
+22442,CANCELED,Standard Class,Pacific Asia,Eastern Asia,3,4,-1,delay_lt0
+22528,CANCELED,Second Class,Pacific Asia,Eastern Asia,4,2,2,delay_gt0
+22809,SUSPECTED_FRAUD,Second Class,Pacific Asia,Southeast Asia,5,2,3,delay_gt0
+22919,SUSPECTED_FRAUD,Second Class,Pacific Asia,Eastern Asia,5,2,3,delay_gt0
+23302,SUSPECTED_FRAUD,Standard Class,Pacific Asia,Southeast Asia,3,4,-1,delay_lt0
+23340,CANCELED,Same Day,Pacific Asia,Oceania,1,0,1,delay_gt0
+23415,CANCELED,Standard Class,Pacific Asia,Southeast Asia,6,4,2,delay_gt0
+23518,CANCELED,First Class,Pacific Asia,South Asia,2,1,1,delay_gt0
+23544,CANCELED,Standard Class,Pacific Asia,Eastern Asia,5,4,1,delay_gt0
+23549,CANCELED,Standard Class,Pacific Asia,Southeast Asia,5,4,1,delay_gt0
+23628,SUSPECTED_FRAUD,Standard Class,Pacific Asia,Oceania,4,4,0,delay_eq0
+23650,SUSPECTED_FRAUD,Standard Class,Pacific Asia,South Asia,6,4,2,delay_gt0
+23744,CANCELED,First Class,Pacific Asia,Southeast Asia,2,1,1,delay_gt0
+23891,CANCELED,Standard Class,Pacific Asia,Eastern Asia,2,4,-2,delay_lt0
+23929,SUSPECTED_FRAUD,Same Day,Pacific Asia,Eastern Asia,0,0,0,delay_eq0
+23936,CANCELED,Standard Class,Pacific Asia,Southeast Asia,2,4,-2,delay_lt0
+24008,CANCELED,Same Day,Pacific Asia,South Asia,0,0,0,delay_eq0
+24073,CANCELED,Same Day,Pacific Asia,Oceania,0,0,0,delay_eq0
+24145,SUSPECTED_FRAUD,Standard Class,Pacific Asia,South Asia,6,4,2,delay_gt0
+24453,CANCELED,Standard Class,Pacific Asia,Eastern Asia,4,4,0,delay_eq0
+24461,CANCELED,Standard Class,Pacific Asia,Southeast Asia,2,4,-2,delay_lt0
+24490,CANCELED,Second Class,Pacific Asia,Oceania,6,2,4,delay_gt0
+24493,SUSPECTED_FRAUD,Standard Class,Pacific Asia,Eastern Asia,4,4,0,delay_eq0
+24506,CANCELED,Standard Class,Pacific Asia,Oceania,2,4,-2,delay_lt0
+24570,CANCELED,Standard Class,Pacific Asia,Oceania,6,4,2,delay_gt0
+24650,SUSPECTED_FRAUD,Standard Class,Pacific Asia,South Asia,6,4,2,delay_gt0
+24846,CANCELED,Standard Class,Pacific Asia,Eastern Asia,2,4,-2,delay_lt0
+24945,SUSPECTED_FRAUD,Standard Class,Pacific Asia,Oceania,6,4,2,delay_gt0
+25240,SUSPECTED_FRAUD,First Class,Pacific Asia,Eastern Asia,2,1,1,delay_gt0
+25473,CANCELED,Second Class,Pacific Asia,South Asia,4,2,2,delay_gt0
+25639,SUSPECTED_FRAUD,Same Day,Pacific Asia,Southeast Asia,0,0,0,delay_eq0
+25655,SUSPECTED_FRAUD,Standard Class,Pacific Asia,Oceania,6,4,2,delay_gt0
+25683,SUSPECTED_FRAUD,Standard Class,Pacific Asia,Eastern Asia,4,4,0,delay_eq0
+25705,SUSPECTED_FRAUD,Standard Class,Pacific Asia,South Asia,6,4,2,delay_gt0
+25912,CANCELED,Standard Class,Pacific Asia,Southeast Asia,3,4,-1,delay_lt0
+26033,SUSPECTED_FRAUD,First Class,Pacific Asia,Eastern Asia,2,1,1,delay_gt0
+26105,CANCELED,Standard Class,Pacific Asia,Southeast Asia,6,4,2,delay_gt0
+26188,SUSPECTED_FRAUD,Standard Class,Pacific Asia,Oceania,4,4,0,delay_eq0
+26242,SUSPECTED_FRAUD,Standard Class,Pacific Asia,South Asia,3,4,-1,delay_lt0
+26293,SUSPECTED_FRAUD,Standard Class,Pacific Asia,Southeast Asia,4,4,0,delay_eq0
+26741,CANCELED,First Class,Pacific Asia,Oceania,2,1,1,delay_gt0
+26934,SUSPECTED_FRAUD,Second Class,Pacific Asia,Eastern Asia,5,2,3,delay_gt0
+27068,SUSPECTED_FRAUD,Standard Class,Pacific Asia,Southeast Asia,4,4,0,delay_eq0
+27076,SUSPECTED_FRAUD,Standard Class,Pacific Asia,Eastern Asia,2,4,-2,delay_lt0
+27430,CANCELED,Standard Class,Pacific Asia,South Asia,6,4,2,delay_gt0
+27522,SUSPECTED_FRAUD,Standard Class,Pacific Asia,South Asia,3,4,-1,delay_lt0
+27597,SUSPECTED_FRAUD,Standard Class,Pacific Asia,Southeast Asia,3,4,-1,delay_lt0
+27618,SUSPECTED_FRAUD,Standard Class,Pacific Asia,South Asia,4,4,0,delay_eq0
+27641,CANCELED,First Class,Pacific Asia,Southeast Asia,2,1,1,delay_gt0
+27677,CANCELED,Standard Class,Pacific Asia,Oceania,3,4,-1,delay_lt0
+27762,CANCELED,Second Class,Pacific Asia,Oceania,3,2,1,delay_gt0
+27867,CANCELED,Second Class,Pacific Asia,Southeast Asia,3,2,1,delay_gt0
+27899,SUSPECTED_FRAUD,Standard Class,Pacific Asia,Eastern Asia,5,4,1,delay_gt0
+27951,CANCELED,Standard Class,Pacific Asia,Eastern Asia,2,4,-2,delay_lt0
+28100,CANCELED,First Class,Pacific Asia,Eastern Asia,2,1,1,delay_gt0
+28182,CANCELED,Standard Class,Pacific Asia,Southeast Asia,3,4,-1,delay_lt0
+28265,SUSPECTED_FRAUD,Standard Class,Pacific Asia,South Asia,6,4,2,delay_gt0
+28344,CANCELED,First Class,Pacific Asia,South Asia,2,1,1,delay_gt0
+28492,CANCELED,Standard Class,Pacific Asia,South Asia,3,4,-1,delay_lt0
+28598,CANCELED,Standard Class,Pacific Asia,Southeast Asia,4,4,0,delay_eq0
+28677,SUSPECTED_FRAUD,Standard Class,Pacific Asia,Oceania,3,4,-1,delay_lt0
+28724,SUSPECTED_FRAUD,Standard Class,Pacific Asia,Oceania,5,4,1,delay_gt0
+28734,SUSPECTED_FRAUD,First Class,Pacific Asia,Oceania,2,1,1,delay_gt0
+28748,CANCELED,Standard Class,Pacific Asia,Eastern Asia,4,4,0,delay_eq0
+28752,CANCELED,Second Class,Pacific Asia,Southeast Asia,3,2,1,delay_gt0
+28811,SUSPECTED_FRAUD,Standard Class,Pacific Asia,Eastern Asia,2,4,-2,delay_lt0
+28946,SUSPECTED_FRAUD,First Class,Pacific Asia,Eastern Asia,2,1,1,delay_gt0
+28951,CANCELED,Second Class,Pacific Asia,Eastern Asia,2,2,0,delay_eq0
+28963,SUSPECTED_FRAUD,Standard Class,Pacific Asia,South Asia,4,4,0,delay_eq0
+28988,SUSPECTED_FRAUD,Standard Class,Pacific Asia,Eastern Asia,4,4,0,delay_eq0
+29055,SUSPECTED_FRAUD,Same Day,Pacific Asia,Southeast Asia,0,0,0,delay_eq0
+29365,SUSPECTED_FRAUD,Second Class,Pacific Asia,Southeast Asia,6,2,4,delay_gt0
+29452,CANCELED,First Class,Pacific Asia,Oceania,2,1,1,delay_gt0
+29598,SUSPECTED_FRAUD,Same Day,Pacific Asia,Eastern Asia,0,0,0,delay_eq0
+29630,SUSPECTED_FRAUD,Second Class,Pacific Asia,Oceania,6,2,4,delay_gt0
+29655,SUSPECTED_FRAUD,Standard Class,Pacific Asia,Eastern Asia,6,4,2,delay_gt0
+29696,SUSPECTED_FRAUD,Standard Class,Pacific Asia,Eastern Asia,2,4,-2,delay_lt0
+29760,SUSPECTED_FRAUD,Standard Class,Pacific Asia,Southeast Asia,6,4,2,delay_gt0
+29817,CANCELED,Standard Class,Pacific Asia,Eastern Asia,3,4,-1,delay_lt0
+29821,SUSPECTED_FRAUD,Standard Class,Pacific Asia,Southeast Asia,2,4,-2,delay_lt0
+30037,SUSPECTED_FRAUD,Standard Class,Pacific Asia,Oceania,3,4,-1,delay_lt0
+30066,SUSPECTED_FRAUD,Second Class,Pacific Asia,Oceania,2,2,0,delay_eq0
+30147,CANCELED,Standard Class,Pacific Asia,Eastern Asia,3,4,-1,delay_lt0
+30382,CANCELED,First Class,Pacific Asia,Oceania,2,1,1,delay_gt0
+30441,CANCELED,Standard Class,Pacific Asia,Oceania,2,4,-2,delay_lt0
+30482,SUSPECTED_FRAUD,Standard Class,Pacific Asia,Oceania,3,4,-1,delay_lt0
+30515,SUSPECTED_FRAUD,First Class,Pacific Asia,Oceania,2,1,1,delay_gt0
+30674,SUSPECTED_FRAUD,Standard Class,Pacific Asia,Oceania,5,4,1,delay_gt0
+30715,CANCELED,Second Class,Pacific Asia,Oceania,6,2,4,delay_gt0
+30728,SUSPECTED_FRAUD,Standard Class,Pacific Asia,Oceania,4,4,0,delay_eq0
+30874,SUSPECTED_FRAUD,Standard Class,Pacific Asia,Oceania,5,4,1,delay_gt0
+30924,SUSPECTED_FRAUD,Standard Class,Pacific Asia,Oceania,5,4,1,delay_gt0
+31096,CANCELED,Second Class,Pacific Asia,Oceania,2,2,0,delay_eq0
+31145,CANCELED,Standard Class,Pacific Asia,Oceania,6,4,2,delay_gt0
+31193,CANCELED,First Class,Pacific Asia,Oceania,2,1,1,delay_gt0
+31207,CANCELED,Standard Class,Pacific Asia,Oceania,3,4,-1,delay_lt0
+31336,SUSPECTED_FRAUD,Standard Class,USCA,US Center ,2,4,-2,delay_lt0
+31350,SUSPECTED_FRAUD,Standard Class,USCA,East of USA,6,4,2,delay_gt0
+31364,SUSPECTED_FRAUD,Standard Class,USCA,West of USA ,5,4,1,delay_gt0
+31520,SUSPECTED_FRAUD,Standard Class,USCA,East of USA,6,4,2,delay_gt0
+31526,CANCELED,First Class,USCA,South of  USA ,2,1,1,delay_gt0
+31552,SUSPECTED_FRAUD,Standard Class,USCA,US Center ,3,4,-1,delay_lt0
+31564,SUSPECTED_FRAUD,Standard Class,USCA,East of USA,5,4,1,delay_gt0
+31767,CANCELED,Standard Class,USCA,East of USA,3,4,-1,delay_lt0
+31846,SUSPECTED_FRAUD,Standard Class,USCA,US Center ,2,4,-2,delay_lt0
+31888,CANCELED,Standard Class,USCA,West of USA ,4,4,0,delay_eq0
+32153,CANCELED,Standard Class,USCA,East of USA,4,4,0,delay_eq0
+32278,SUSPECTED_FRAUD,Standard Class,USCA,West of USA ,4,4,0,delay_eq0
+32324,CANCELED,Standard Class,USCA,East of USA,5,4,1,delay_gt0
+32325,SUSPECTED_FRAUD,First Class,USCA,East of USA,2,1,1,delay_gt0
+32340,CANCELED,Standard Class,USCA,US Center ,6,4,2,delay_gt0
+32370,SUSPECTED_FRAUD,Standard Class,USCA,West of USA ,6,4,2,delay_gt0
+32494,CANCELED,Second Class,USCA,US Center ,5,2,3,delay_gt0
+32527,CANCELED,Standard Class,USCA,West of USA ,3,4,-1,delay_lt0
+32557,SUSPECTED_FRAUD,Standard Class,USCA,South of  USA ,3,4,-1,delay_lt0
+32617,SUSPECTED_FRAUD,Standard Class,USCA,East of USA,3,4,-1,delay_lt0
+32618,SUSPECTED_FRAUD,Standard Class,USCA,East of USA,4,4,0,delay_eq0
+32876,CANCELED,Standard Class,USCA,East of USA,2,4,-2,delay_lt0
+32902,CANCELED,Standard Class,USCA,West of USA ,3,4,-1,delay_lt0
+32954,SUSPECTED_FRAUD,Standard Class,USCA,US Center ,5,4,1,delay_gt0
+33029,SUSPECTED_FRAUD,Same Day,USCA,US Center ,0,0,0,delay_eq0
+33117,CANCELED,Standard Class,USCA,US Center ,3,4,-1,delay_lt0
+33184,CANCELED,Standard Class,USCA,South of  USA ,5,4,1,delay_gt0
+33374,SUSPECTED_FRAUD,Standard Class,USCA,East of USA,5,4,1,delay_gt0
+33502,CANCELED,Same Day,USCA,South of  USA ,0,0,0,delay_eq0
+33518,SUSPECTED_FRAUD,Standard Class,USCA,East of USA,4,4,0,delay_eq0
+33529,SUSPECTED_FRAUD,Standard Class,USCA,US Center ,5,4,1,delay_gt0
+33696,CANCELED,Standard Class,USCA,South of  USA ,2,4,-2,delay_lt0
+33781,CANCELED,Second Class,USCA,West of USA ,2,2,0,delay_eq0
+33824,SUSPECTED_FRAUD,Standard Class,USCA,US Center ,5,4,1,delay_gt0
+33829,CANCELED,Second Class,USCA,South of  USA ,5,2,3,delay_gt0
+33931,SUSPECTED_FRAUD,Standard Class,USCA,South of  USA ,2,4,-2,delay_lt0
+34210,SUSPECTED_FRAUD,Second Class,USCA,East of USA,6,2,4,delay_gt0
+34249,SUSPECTED_FRAUD,First Class,USCA,West of USA ,2,1,1,delay_gt0
+34304,SUSPECTED_FRAUD,Standard Class,USCA,West of USA ,5,4,1,delay_gt0
+34331,CANCELED,Same Day,USCA,South of  USA ,0,0,0,delay_eq0
+34332,CANCELED,Same Day,USCA,South of  USA ,0,0,0,delay_eq0
+34387,SUSPECTED_FRAUD,Standard Class,USCA,East of USA,3,4,-1,delay_lt0
+34448,CANCELED,Standard Class,USCA,East of USA,4,4,0,delay_eq0
+34461,SUSPECTED_FRAUD,Standard Class,USCA,West of USA ,2,4,-2,delay_lt0
+34506,SUSPECTED_FRAUD,Standard Class,USCA,West of USA ,2,4,-2,delay_lt0
+34546,CANCELED,Standard Class,USCA,West of USA ,2,4,-2,delay_lt0
+34625,CANCELED,Standard Class,USCA,US Center ,6,4,2,delay_gt0
+34659,CANCELED,Second Class,USCA,East of USA,5,2,3,delay_gt0
+34703,CANCELED,Standard Class,USCA,East of USA,4,4,0,delay_eq0
+34814,SUSPECTED_FRAUD,Standard Class,USCA,South of  USA ,5,4,1,delay_gt0
+34925,SUSPECTED_FRAUD,First Class,USCA,West of USA ,2,1,1,delay_gt0
+35015,CANCELED,Standard Class,USCA,South of  USA ,6,4,2,delay_gt0
+35154,SUSPECTED_FRAUD,First Class,USCA,US Center ,2,1,1,delay_gt0
+35340,SUSPECTED_FRAUD,First Class,USCA,West of USA ,2,1,1,delay_gt0
+35351,CANCELED,Standard Class,USCA,East of USA,2,4,-2,delay_lt0
+35374,CANCELED,First Class,USCA,US Center ,2,1,1,delay_gt0
+35402,CANCELED,Standard Class,USCA,West of USA ,3,4,-1,delay_lt0
+35451,CANCELED,First Class,USCA,South of  USA ,2,1,1,delay_gt0
+35642,SUSPECTED_FRAUD,Standard Class,USCA,West of USA ,3,4,-1,delay_lt0
+35754,SUSPECTED_FRAUD,Second Class,USCA,West of USA ,5,2,3,delay_gt0
+35764,SUSPECTED_FRAUD,Standard Class,USCA,East of USA,5,4,1,delay_gt0
+35800,SUSPECTED_FRAUD,First Class,USCA,West of USA ,2,1,1,delay_gt0
+35896,CANCELED,Standard Class,USCA,East of USA,2,4,-2,delay_lt0
+36028,CANCELED,Standard Class,USCA,West of USA ,4,4,0,delay_eq0
+36197,CANCELED,First Class,USCA,West of USA ,2,1,1,delay_gt0
+36344,SUSPECTED_FRAUD,Standard Class,USCA,West of USA ,5,4,1,delay_gt0
+36359,CANCELED,First Class,USCA,US Center ,2,1,1,delay_gt0
+36433,SUSPECTED_FRAUD,Second Class,USCA,West of USA ,4,2,2,delay_gt0
+36446,CANCELED,Standard Class,USCA,East of USA,2,4,-2,delay_lt0
+36447,CANCELED,Standard Class,USCA,West of USA ,3,4,-1,delay_lt0
+36483,CANCELED,Standard Class,USCA,East of USA,4,4,0,delay_eq0
+36584,SUSPECTED_FRAUD,Second Class,USCA,West of USA ,5,2,3,delay_gt0
+36695,SUSPECTED_FRAUD,Standard Class,USCA,East of USA,6,4,2,delay_gt0
+36729,CANCELED,Second Class,USCA,East of USA,5,2,3,delay_gt0
+36761,SUSPECTED_FRAUD,Standard Class,USCA,West of USA ,2,4,-2,delay_lt0
+36800,SUSPECTED_FRAUD,Same Day,USCA,East of USA,0,0,0,delay_eq0
+36905,SUSPECTED_FRAUD,Standard Class,USCA,West of USA ,6,4,2,delay_gt0
+37013,SUSPECTED_FRAUD,Second Class,USCA,US Center ,4,2,2,delay_gt0
+37048,SUSPECTED_FRAUD,Standard Class,USCA,West of USA ,4,4,0,delay_eq0
+37106,CANCELED,Standard Class,USCA,South of  USA ,2,4,-2,delay_lt0
+37122,CANCELED,Standard Class,USCA,East of USA,3,4,-1,delay_lt0
+37177,CANCELED,Second Class,USCA,West of USA ,3,2,1,delay_gt0
+37258,SUSPECTED_FRAUD,Second Class,USCA,West of USA ,4,2,2,delay_gt0
+37360,CANCELED,Standard Class,USCA,West of USA ,6,4,2,delay_gt0
+37521,CANCELED,Standard Class,USCA,South of  USA ,2,4,-2,delay_lt0
+37529,CANCELED,First Class,USCA,West of USA ,2,1,1,delay_gt0
+37650,SUSPECTED_FRAUD,Standard Class,USCA,East of USA,6,4,2,delay_gt0
+37845,SUSPECTED_FRAUD,Standard Class,USCA,US Center ,6,4,2,delay_gt0
+37921,SUSPECTED_FRAUD,Second Class,USCA,US Center ,2,2,0,delay_eq0
+37960,SUSPECTED_FRAUD,Standard Class,USCA,South of  USA ,6,4,2,delay_gt0
+38032,SUSPECTED_FRAUD,Standard Class,USCA,West of USA ,3,4,-1,delay_lt0
+38035,SUSPECTED_FRAUD,Second Class,USCA,West of USA ,6,2,4,delay_gt0
+38079,CANCELED,Standard Class,USCA,East of USA,5,4,1,delay_gt0
+38337,SUSPECTED_FRAUD,First Class,USCA,East of USA,2,1,1,delay_gt0
+38358,CANCELED,Standard Class,USCA,West of USA ,4,4,0,delay_eq0
+38530,SUSPECTED_FRAUD,Second Class,USCA,East of USA,6,2,4,delay_gt0
+38544,SUSPECTED_FRAUD,Standard Class,USCA,East of USA,5,4,1,delay_gt0
+38598,SUSPECTED_FRAUD,Standard Class,USCA,US Center ,4,4,0,delay_eq0
+38643,SUSPECTED_FRAUD,Second Class,USCA,South of  USA ,4,2,2,delay_gt0
+38668,CANCELED,Standard Class,USCA,West of USA ,4,4,0,delay_eq0
+38689,CANCELED,Second Class,USCA,West of USA ,5,2,3,delay_gt0
+38727,SUSPECTED_FRAUD,First Class,USCA,South of  USA ,2,1,1,delay_gt0
+38743,CANCELED,Standard Class,USCA,US Center ,4,4,0,delay_eq0
+38821,SUSPECTED_FRAUD,Standard Class,USCA,West of USA ,2,4,-2,delay_lt0
+38965,CANCELED,Second Class,USCA,East of USA,6,2,4,delay_gt0
+39023,SUSPECTED_FRAUD,Standard Class,USCA,East of USA,4,4,0,delay_eq0
+39144,CANCELED,Standard Class,USCA,US Center ,5,4,1,delay_gt0
+39151,CANCELED,First Class,USCA,South of  USA ,2,1,1,delay_gt0
+39153,CANCELED,First Class,USCA,East of USA,2,1,1,delay_gt0
+39202,CANCELED,Standard Class,USCA,US Center ,3,4,-1,delay_lt0
+39207,SUSPECTED_FRAUD,Standard Class,USCA,West of USA ,3,4,-1,delay_lt0
+39453,SUSPECTED_FRAUD,Second Class,USCA,East of USA,4,2,2,delay_gt0
+39572,CANCELED,Second Class,USCA,East of USA,3,2,1,delay_gt0
+39582,CANCELED,Standard Class,USCA,US Center ,3,4,-1,delay_lt0
+39605,SUSPECTED_FRAUD,Second Class,USCA,West of USA ,6,2,4,delay_gt0
+39803,SUSPECTED_FRAUD,Second Class,USCA,US Center ,4,2,2,delay_gt0
+39884,SUSPECTED_FRAUD,Standard Class,USCA,West of USA ,5,4,1,delay_gt0
+39913,SUSPECTED_FRAUD,Standard Class,USCA,West of USA ,4,4,0,delay_eq0
+40165,CANCELED,Standard Class,USCA,West of USA ,6,4,2,delay_gt0
+40382,CANCELED,Standard Class,USCA,West of USA ,3,4,-1,delay_lt0
+40420,CANCELED,Same Day,USCA,East of USA,0,0,0,delay_eq0
+40695,CANCELED,Standard Class,USCA,East of USA,6,4,2,delay_gt0
+40732,SUSPECTED_FRAUD,First Class,USCA,West of USA ,2,1,1,delay_gt0
+41026,SUSPECTED_FRAUD,Second Class,USCA,West of USA ,2,2,0,delay_eq0
+41051,CANCELED,Second Class,USCA,South of  USA ,2,2,0,delay_eq0
+41142,CANCELED,Standard Class,USCA,US Center ,3,4,-1,delay_lt0
+41308,SUSPECTED_FRAUD,Standard Class,Pacific Asia,West Asia,4,4,0,delay_eq0
+41561,SUSPECTED_FRAUD,Second Class,Pacific Asia,West Asia,2,2,0,delay_eq0
+41590,SUSPECTED_FRAUD,Standard Class,Africa,East Africa,6,4,2,delay_gt0
+41839,CANCELED,Standard Class,Africa,East Africa,5,4,1,delay_gt0
+41868,SUSPECTED_FRAUD,First Class,Europe,Eastern Europe,2,1,1,delay_gt0
+41901,CANCELED,Standard Class,Africa,West Africa,2,4,-2,delay_lt0
+42115,CANCELED,Standard Class,Pacific Asia,South Asia,6,4,2,delay_gt0
+42147,CANCELED,Standard Class,USCA,Canada,3,4,-1,delay_lt0
+42300,SUSPECTED_FRAUD,Second Class,Africa,West Africa,6,2,4,delay_gt0
+42312,CANCELED,Standard Class,Africa,East Africa,3,4,-1,delay_lt0
+42414,SUSPECTED_FRAUD,Second Class,Africa,West Africa,5,2,3,delay_gt0
+42509,SUSPECTED_FRAUD,Second Class,Africa,North Africa,5,2,3,delay_gt0
+42887,SUSPECTED_FRAUD,Standard Class,Pacific Asia,West Asia,3,4,-1,delay_lt0
+42959,SUSPECTED_FRAUD,First Class,Africa,East Africa,2,1,1,delay_gt0
+43063,SUSPECTED_FRAUD,Standard Class,Africa,Southern Africa,4,4,0,delay_eq0
+43126,SUSPECTED_FRAUD,Standard Class,Pacific Asia,South Asia,2,4,-2,delay_lt0
+43310,SUSPECTED_FRAUD,Second Class,Africa,North Africa,6,2,4,delay_gt0
+43482,SUSPECTED_FRAUD,Standard Class,Africa,North Africa,3,4,-1,delay_lt0
+43551,SUSPECTED_FRAUD,Standard Class,Europe,Eastern Europe,2,4,-2,delay_lt0
+43715,SUSPECTED_FRAUD,Second Class,Africa,West Africa,6,2,4,delay_gt0
+43881,SUSPECTED_FRAUD,Second Class,USCA,Canada,2,2,0,delay_eq0
+44069,CANCELED,Standard Class,Pacific Asia,West Asia,5,4,1,delay_gt0
+44145,CANCELED,Second Class,Africa,Central Africa,6,2,4,delay_gt0
+44386,CANCELED,Second Class,Africa,Central Africa,2,2,0,delay_eq0
+44571,SUSPECTED_FRAUD,Standard Class,Africa,East Africa,2,4,-2,delay_lt0
+44715,SUSPECTED_FRAUD,Second Class,Pacific Asia,West Asia,6,2,4,delay_gt0
+45018,SUSPECTED_FRAUD,Second Class,Africa,North Africa,4,2,2,delay_gt0
+45034,SUSPECTED_FRAUD,Standard Class,Europe,Eastern Europe,5,4,1,delay_gt0
+45044,CANCELED,Second Class,Pacific Asia,South Asia,5,2,3,delay_gt0
+45102,CANCELED,First Class,Europe,Eastern Europe,2,1,1,delay_gt0
+45131,CANCELED,Standard Class,Europe,Eastern Europe,2,4,-2,delay_lt0
+45161,SUSPECTED_FRAUD,Second Class,USCA,Canada,2,2,0,delay_eq0
+45255,CANCELED,Second Class,Pacific Asia,West Asia,6,2,4,delay_gt0
+45259,CANCELED,Standard Class,Pacific Asia,West Asia,5,4,1,delay_gt0
+45308,CANCELED,Same Day,Africa,West Africa,0,0,0,delay_eq0
+45339,CANCELED,Standard Class,Pacific Asia,West Asia,5,4,1,delay_gt0
+45527,SUSPECTED_FRAUD,Standard Class,Africa,West Africa,3,4,-1,delay_lt0
+45590,CANCELED,Standard Class,Pacific Asia,West Asia,6,4,2,delay_gt0
+45643,CANCELED,Standard Class,Pacific Asia,South Asia,4,4,0,delay_eq0
+45824,CANCELED,Same Day,Africa,North Africa,1,0,1,delay_gt0
+45962,SUSPECTED_FRAUD,Standard Class,Pacific Asia,West Asia,3,4,-1,delay_lt0
+46079,CANCELED,Standard Class,Pacific Asia,West Asia,5,4,1,delay_gt0
+46184,SUSPECTED_FRAUD,Standard Class,Africa,West Africa,5,4,1,delay_gt0
+46223,CANCELED,Standard Class,Europe,Eastern Europe,4,4,0,delay_eq0
+46382,SUSPECTED_FRAUD,Standard Class,Europe,Eastern Europe,3,4,-1,delay_lt0
+46417,CANCELED,Standard Class,Africa,East Africa,3,4,-1,delay_lt0
+46493,CANCELED,Same Day,Africa,Southern Africa,1,0,1,delay_gt0
+46558,CANCELED,Same Day,Africa,Southern Africa,1,0,1,delay_gt0
+46559,SUSPECTED_FRAUD,Same Day,Africa,Southern Africa,1,0,1,delay_gt0
+46662,SUSPECTED_FRAUD,Standard Class,USCA,Canada,3,4,-1,delay_lt0
+46666,CANCELED,Standard Class,Africa,West Africa,2,4,-2,delay_lt0
+46824,SUSPECTED_FRAUD,First Class,Africa,North Africa,2,1,1,delay_gt0
+46991,CANCELED,Second Class,Africa,West Africa,2,2,0,delay_eq0
+47055,CANCELED,Second Class,Africa,North Africa,6,2,4,delay_gt0
+47182,CANCELED,Second Class,Africa,West Africa,3,2,1,delay_gt0
+47226,SUSPECTED_FRAUD,Second Class,Africa,West Africa,2,2,0,delay_eq0
+47314,CANCELED,Standard Class,Africa,Central Africa,5,4,1,delay_gt0
+47840,SUSPECTED_FRAUD,Standard Class,Africa,North Africa,6,4,2,delay_gt0
+47922,SUSPECTED_FRAUD,Second Class,Africa,Central Africa,3,2,1,delay_gt0
+47955,CANCELED,Standard Class,Pacific Asia,West Asia,6,4,2,delay_gt0
+48055,CANCELED,First Class,Africa,Central Africa,2,1,1,delay_gt0
+48062,CANCELED,First Class,Pacific Asia,West Asia,2,1,1,delay_gt0
+48193,CANCELED,Standard Class,Europe,Eastern Europe,4,4,0,delay_eq0
+48458,SUSPECTED_FRAUD,Standard Class,Pacific Asia,West Asia,4,4,0,delay_eq0
+48588,SUSPECTED_FRAUD,Standard Class,Africa,North Africa,4,4,0,delay_eq0
+48954,CANCELED,Standard Class,Pacific Asia,West Asia,5,4,1,delay_gt0
+49040,SUSPECTED_FRAUD,Standard Class,Africa,West Africa,6,4,2,delay_gt0
+49209,SUSPECTED_FRAUD,Standard Class,Africa,North Africa,5,4,1,delay_gt0
+49540,SUSPECTED_FRAUD,Standard Class,Africa,West Africa,6,4,2,delay_gt0
+49666,CANCELED,Second Class,Europe,Eastern Europe,2,2,0,delay_eq0
+49724,CANCELED,Standard Class,Africa,West Africa,5,4,1,delay_gt0
+49749,SUSPECTED_FRAUD,First Class,Pacific Asia,West Asia,2,1,1,delay_gt0
+49793,SUSPECTED_FRAUD,First Class,Pacific Asia,West Asia,2,1,1,delay_gt0
+49810,SUSPECTED_FRAUD,Standard Class,Africa,Central Africa,6,4,2,delay_gt0
+49918,SUSPECTED_FRAUD,Standard Class,Europe,Eastern Europe,4,4,0,delay_eq0
+50044,CANCELED,Standard Class,Pacific Asia,South Asia,5,4,1,delay_gt0
+50210,SUSPECTED_FRAUD,Same Day,Africa,West Africa,1,0,1,delay_gt0
+50276,CANCELED,Second Class,USCA,Canada,2,2,0,delay_eq0
+50280,SUSPECTED_FRAUD,First Class,Pacific Asia,West Asia,2,1,1,delay_gt0
+50484,SUSPECTED_FRAUD,First Class,Pacific Asia,West Asia,2,1,1,delay_gt0
+50783,SUSPECTED_FRAUD,Standard Class,Pacific Asia,West Asia,4,4,0,delay_eq0
+50849,CANCELED,Standard Class,Europe,Northern Europe,5,4,1,delay_gt0
+50852,SUSPECTED_FRAUD,First Class,Africa,West Africa,2,1,1,delay_gt0
+50955,SUSPECTED_FRAUD,Same Day,USCA,Canada,1,0,1,delay_gt0
+51120,SUSPECTED_FRAUD,Standard Class,Europe,Eastern Europe,6,4,2,delay_gt0
+51137,CANCELED,Standard Class,Pacific Asia,West Asia,3,4,-1,delay_lt0
+51177,CANCELED,Standard Class,Pacific Asia,West Asia,3,4,-1,delay_lt0
+51215,SUSPECTED_FRAUD,Standard Class,Pacific Asia,West Asia,6,4,2,delay_gt0
+51248,SUSPECTED_FRAUD,Standard Class,Africa,North Africa,4,4,0,delay_eq0
+51652,CANCELED,Standard Class,LATAM,Central America,3,4,-1,delay_lt0
+51742,SUSPECTED_FRAUD,Second Class,LATAM,Central America,3,2,1,delay_gt0
+51884,SUSPECTED_FRAUD,Second Class,LATAM,South America,5,2,3,delay_gt0
+51891,CANCELED,Second Class,LATAM,Central America,2,2,0,delay_eq0
+51895,SUSPECTED_FRAUD,Standard Class,LATAM,Central America,6,4,2,delay_gt0
+52067,CANCELED,Second Class,LATAM,Central America,3,2,1,delay_gt0
+52098,CANCELED,Standard Class,LATAM,South America,4,4,0,delay_eq0
+52230,SUSPECTED_FRAUD,First Class,LATAM,Central America,2,1,1,delay_gt0
+52241,CANCELED,Second Class,LATAM,South America,2,2,0,delay_eq0
+52259,CANCELED,Standard Class,LATAM,Central America,5,4,1,delay_gt0
+52463,CANCELED,Standard Class,LATAM,Central America,4,4,0,delay_eq0
+52490,SUSPECTED_FRAUD,Standard Class,LATAM,South America,6,4,2,delay_gt0
+52715,SUSPECTED_FRAUD,Standard Class,LATAM,South America,6,4,2,delay_gt0
+52719,SUSPECTED_FRAUD,Standard Class,LATAM,Central America,5,4,1,delay_gt0
+52783,CANCELED,Second Class,LATAM,Central America,4,2,2,delay_gt0
+52811,SUSPECTED_FRAUD,First Class,LATAM,Central America,2,1,1,delay_gt0
+52821,SUSPECTED_FRAUD,Standard Class,LATAM,Caribbean,2,4,-2,delay_lt0
+52859,SUSPECTED_FRAUD,Standard Class,LATAM,Central America,5,4,1,delay_gt0
+52940,SUSPECTED_FRAUD,Standard Class,LATAM,Central America,6,4,2,delay_gt0
+53166,SUSPECTED_FRAUD,Standard Class,LATAM,South America,2,4,-2,delay_lt0
+53261,CANCELED,Second Class,LATAM,South America,2,2,0,delay_eq0
+53439,SUSPECTED_FRAUD,Standard Class,LATAM,Central America,5,4,1,delay_gt0
+53498,SUSPECTED_FRAUD,Second Class,LATAM,Central America,4,2,2,delay_gt0
+53578,SUSPECTED_FRAUD,Second Class,LATAM,Central America,4,2,2,delay_gt0
+53627,CANCELED,Standard Class,LATAM,Central America,3,4,-1,delay_lt0
+53715,CANCELED,First Class,LATAM,Caribbean,2,1,1,delay_gt0
+54115,CANCELED,Same Day,LATAM,Central America,1,0,1,delay_gt0
+54125,CANCELED,Standard Class,LATAM,South America,6,4,2,delay_gt0
+54239,SUSPECTED_FRAUD,Standard Class,LATAM,South America,5,4,1,delay_gt0
+54262,SUSPECTED_FRAUD,Second Class,LATAM,Central America,3,2,1,delay_gt0
+54283,SUSPECTED_FRAUD,First Class,LATAM,Central America,2,1,1,delay_gt0
+54336,SUSPECTED_FRAUD,Standard Class,LATAM,Central America,2,4,-2,delay_lt0
+54485,CANCELED,Standard Class,LATAM,South America,6,4,2,delay_gt0
+54498,CANCELED,Standard Class,LATAM,Central America,4,4,0,delay_eq0
+54558,CANCELED,Standard Class,LATAM,Caribbean,4,4,0,delay_eq0
+54648,SUSPECTED_FRAUD,Standard Class,LATAM,Central America,4,4,0,delay_eq0
+54849,CANCELED,Second Class,LATAM,South America,5,2,3,delay_gt0
+55000,CANCELED,Standard Class,LATAM,Central America,6,4,2,delay_gt0
+55026,SUSPECTED_FRAUD,First Class,LATAM,Central America,2,1,1,delay_gt0
+55207,SUSPECTED_FRAUD,Standard Class,LATAM,Caribbean,3,4,-1,delay_lt0
+55290,CANCELED,Second Class,LATAM,Central America,6,2,4,delay_gt0
+55314,CANCELED,First Class,LATAM,Central America,2,1,1,delay_gt0
+55416,SUSPECTED_FRAUD,Standard Class,LATAM,South America,2,4,-2,delay_lt0
+55492,SUSPECTED_FRAUD,Standard Class,LATAM,South America,3,4,-1,delay_lt0
+55519,CANCELED,Standard Class,LATAM,Central America,5,4,1,delay_gt0
+55810,SUSPECTED_FRAUD,Standard Class,LATAM,Central America,6,4,2,delay_gt0
+55935,CANCELED,First Class,LATAM,South America,2,1,1,delay_gt0
+56120,CANCELED,Standard Class,LATAM,South America,6,4,2,delay_gt0
+56327,CANCELED,Standard Class,LATAM,Central America,3,4,-1,delay_lt0
+56374,CANCELED,Second Class,LATAM,Central America,5,2,3,delay_gt0
+56538,SUSPECTED_FRAUD,Second Class,LATAM,South America,4,2,2,delay_gt0
+56938,CANCELED,Second Class,LATAM,Central America,4,2,2,delay_gt0
+56989,SUSPECTED_FRAUD,Standard Class,LATAM,Central America,5,4,1,delay_gt0
+57104,CANCELED,Same Day,LATAM,South America,1,0,1,delay_gt0
+57227,SUSPECTED_FRAUD,Standard Class,LATAM,Central America,3,4,-1,delay_lt0
+57433,CANCELED,Standard Class,LATAM,Central America,4,4,0,delay_eq0
+57467,SUSPECTED_FRAUD,First Class,LATAM,Central America,2,1,1,delay_gt0
+57522,CANCELED,Standard Class,LATAM,Central America,3,4,-1,delay_lt0
+57638,CANCELED,Standard Class,LATAM,Central America,4,4,0,delay_eq0
+57651,SUSPECTED_FRAUD,First Class,LATAM,Central America,2,1,1,delay_gt0
+57672,CANCELED,Standard Class,LATAM,Central America,3,4,-1,delay_lt0
+57726,SUSPECTED_FRAUD,Standard Class,LATAM,Central America,2,4,-2,delay_lt0
+57770,SUSPECTED_FRAUD,Standard Class,LATAM,South America,6,4,2,delay_gt0
+57954,SUSPECTED_FRAUD,Second Class,LATAM,Central America,5,2,3,delay_gt0
+58112,SUSPECTED_FRAUD,Standard Class,LATAM,Central America,3,4,-1,delay_lt0
+58233,CANCELED,Standard Class,LATAM,Central America,4,4,0,delay_eq0
+58238,CANCELED,Second Class,LATAM,Caribbean,4,2,2,delay_gt0
+58298,SUSPECTED_FRAUD,Standard Class,LATAM,South America,4,4,0,delay_eq0
+58392,SUSPECTED_FRAUD,First Class,LATAM,South America,2,1,1,delay_gt0
+58415,CANCELED,First Class,LATAM,Caribbean,2,1,1,delay_gt0
+58463,SUSPECTED_FRAUD,First Class,LATAM,Central America,2,1,1,delay_gt0
+58480,CANCELED,Same Day,LATAM,Caribbean,1,0,1,delay_gt0
+58506,SUSPECTED_FRAUD,Same Day,LATAM,Central America,0,0,0,delay_eq0
+58585,CANCELED,Standard Class,LATAM,Central America,6,4,2,delay_gt0
+58655,SUSPECTED_FRAUD,Standard Class,LATAM,South America,6,4,2,delay_gt0
+58715,CANCELED,First Class,LATAM,South America,2,1,1,delay_gt0
+58744,SUSPECTED_FRAUD,Standard Class,LATAM,Central America,5,4,1,delay_gt0
+58761,CANCELED,First Class,LATAM,South America,2,1,1,delay_gt0
+58896,SUSPECTED_FRAUD,Standard Class,LATAM,Caribbean,2,4,-2,delay_lt0
+58901,SUSPECTED_FRAUD,Standard Class,LATAM,South America,2,4,-2,delay_lt0
+59033,SUSPECTED_FRAUD,Standard Class,LATAM,Central America,4,4,0,delay_eq0
+59072,CANCELED,Standard Class,LATAM,South America,3,4,-1,delay_lt0
+59123,SUSPECTED_FRAUD,Second Class,LATAM,Central America,4,2,2,delay_gt0
+59215,CANCELED,Second Class,LATAM,Caribbean,6,2,4,delay_gt0
+59245,SUSPECTED_FRAUD,First Class,LATAM,Central America,2,1,1,delay_gt0
+59290,CANCELED,Second Class,LATAM,Central America,6,2,4,delay_gt0
+59325,SUSPECTED_FRAUD,Standard Class,LATAM,Central America,6,4,2,delay_gt0
+59345,SUSPECTED_FRAUD,Standard Class,LATAM,Central America,6,4,2,delay_gt0
+59621,CANCELED,Standard Class,LATAM,Central America,2,4,-2,delay_lt0
+59656,SUSPECTED_FRAUD,Second Class,LATAM,Central America,2,2,0,delay_eq0
+59726,SUSPECTED_FRAUD,First Class,LATAM,Central America,2,1,1,delay_gt0
+59741,SUSPECTED_FRAUD,Standard Class,LATAM,Caribbean,2,4,-2,delay_lt0
+59763,SUSPECTED_FRAUD,Standard Class,LATAM,Central America,4,4,0,delay_eq0
+59773,SUSPECTED_FRAUD,Standard Class,LATAM,Central America,4,4,0,delay_eq0
+59806,CANCELED,First Class,LATAM,Central America,2,1,1,delay_gt0
+59875,CANCELED,Standard Class,LATAM,Central America,6,4,2,delay_gt0
+60018,SUSPECTED_FRAUD,Standard Class,LATAM,South America,4,4,0,delay_eq0
+60038,SUSPECTED_FRAUD,Standard Class,LATAM,Central America,4,4,0,delay_eq0
+60165,SUSPECTED_FRAUD,Standard Class,LATAM,Central America,6,4,2,delay_gt0
+60203,CANCELED,Standard Class,LATAM,Caribbean,4,4,0,delay_eq0
+60220,CANCELED,Standard Class,LATAM,Central America,6,4,2,delay_gt0
+60235,CANCELED,Standard Class,LATAM,South America,6,4,2,delay_gt0
+60346,SUSPECTED_FRAUD,Second Class,LATAM,Caribbean,2,2,0,delay_eq0
+60533,SUSPECTED_FRAUD,Standard Class,LATAM,Central America,4,4,0,delay_eq0
+60574,SUSPECTED_FRAUD,Standard Class,LATAM,Central America,5,4,1,delay_gt0
+60733,SUSPECTED_FRAUD,Standard Class,LATAM,Central America,4,4,0,delay_eq0
+60759,CANCELED,Second Class,LATAM,Central America,5,2,3,delay_gt0
+60808,SUSPECTED_FRAUD,Second Class,LATAM,Central America,4,2,2,delay_gt0
+61073,SUSPECTED_FRAUD,Same Day,LATAM,Caribbean,1,0,1,delay_gt0
+61095,SUSPECTED_FRAUD,Second Class,LATAM,Central America,6,2,4,delay_gt0
+61098,SUSPECTED_FRAUD,Second Class,LATAM,Central America,4,2,2,delay_gt0
+61435,CANCELED,Standard Class,LATAM,South America,6,4,2,delay_gt0
+61533,CANCELED,Standard Class,LATAM,South America,4,4,0,delay_eq0
+61608,SUSPECTED_FRAUD,Standard Class,Europe,Southern Europe,4,4,0,delay_eq0
+61673,SUSPECTED_FRAUD,Standard Class,Europe,Northern Europe,4,4,0,delay_eq0
+61681,SUSPECTED_FRAUD,Second Class,Europe,Northern Europe,2,2,0,delay_eq0
+61853,SUSPECTED_FRAUD,Standard Class,Europe,Southern Europe,4,4,0,delay_eq0
+61872,CANCELED,Standard Class,Europe,Western Europe,3,4,-1,delay_lt0
+61922,SUSPECTED_FRAUD,Same Day,Europe,Western Europe,1,0,1,delay_gt0
+61952,CANCELED,First Class,Europe,Western Europe,2,1,1,delay_gt0
+62240,SUSPECTED_FRAUD,Standard Class,Europe,Northern Europe,6,4,2,delay_gt0
+62419,SUSPECTED_FRAUD,Standard Class,Europe,Western Europe,5,4,1,delay_gt0
+62431,SUSPECTED_FRAUD,First Class,Europe,Western Europe,2,1,1,delay_gt0
+62509,CANCELED,Standard Class,Europe,Western Europe,5,4,1,delay_gt0
+62561,SUSPECTED_FRAUD,First Class,Europe,Western Europe,2,1,1,delay_gt0
+62624,SUSPECTED_FRAUD,Second Class,Europe,Western Europe,5,2,3,delay_gt0
+62647,SUSPECTED_FRAUD,Standard Class,Europe,Southern Europe,3,4,-1,delay_lt0
+62680,CANCELED,Standard Class,Europe,Southern Europe,6,4,2,delay_gt0
+62786,CANCELED,Standard Class,Europe,Western Europe,2,4,-2,delay_lt0
+62810,CANCELED,Standard Class,Europe,Western Europe,6,4,2,delay_gt0
+62840,CANCELED,Standard Class,Europe,Northern Europe,6,4,2,delay_gt0
+63285,CANCELED,Standard Class,Europe,Northern Europe,6,4,2,delay_gt0
+63310,SUSPECTED_FRAUD,Second Class,Europe,Western Europe,6,2,4,delay_gt0
+63316,CANCELED,Same Day,Europe,Western Europe,0,0,0,delay_eq0
+63406,CANCELED,Second Class,Europe,Southern Europe,2,2,0,delay_eq0
+63631,CANCELED,First Class,Europe,Western Europe,2,1,1,delay_gt0
+63679,SUSPECTED_FRAUD,Standard Class,Europe,Western Europe,5,4,1,delay_gt0
+63823,SUSPECTED_FRAUD,Standard Class,Europe,Southern Europe,4,4,0,delay_eq0
+63824,CANCELED,Standard Class,Europe,Western Europe,5,4,1,delay_gt0
+64009,SUSPECTED_FRAUD,Standard Class,Europe,Western Europe,5,4,1,delay_gt0
+64242,SUSPECTED_FRAUD,Standard Class,Europe,Northern Europe,3,4,-1,delay_lt0
+64274,CANCELED,Standard Class,Europe,Western Europe,5,4,1,delay_gt0
+64359,SUSPECTED_FRAUD,Same Day,Europe,Western Europe,0,0,0,delay_eq0
+64464,CANCELED,Second Class,Europe,Western Europe,5,2,3,delay_gt0
+64517,CANCELED,Standard Class,Europe,Southern Europe,3,4,-1,delay_lt0
+64730,SUSPECTED_FRAUD,Same Day,Europe,Southern Europe,1,0,1,delay_gt0
+64742,SUSPECTED_FRAUD,Standard Class,Europe,Northern Europe,3,4,-1,delay_lt0
+64846,SUSPECTED_FRAUD,Standard Class,Europe,Southern Europe,2,4,-2,delay_lt0
+65113,SUSPECTED_FRAUD,Standard Class,Europe,Western Europe,4,4,0,delay_eq0
+65195,CANCELED,Standard Class,Europe,Western Europe,6,4,2,delay_gt0
+65268,SUSPECTED_FRAUD,Standard Class,Europe,Northern Europe,4,4,0,delay_eq0
+65323,CANCELED,First Class,Europe,Western Europe,2,1,1,delay_gt0
+65389,CANCELED,First Class,Europe,Northern Europe,2,1,1,delay_gt0
+65439,CANCELED,Standard Class,Europe,Western Europe,5,4,1,delay_gt0
+65574,SUSPECTED_FRAUD,Second Class,Europe,Western Europe,5,2,3,delay_gt0
+65597,CANCELED,Second Class,Europe,Northern Europe,3,2,1,delay_gt0
+65679,SUSPECTED_FRAUD,Standard Class,Europe,Northern Europe,5,4,1,delay_gt0
+65844,CANCELED,First Class,Europe,Western Europe,2,1,1,delay_gt0
+66043,SUSPECTED_FRAUD,First Class,Europe,Western Europe,2,1,1,delay_gt0
+66155,SUSPECTED_FRAUD,Same Day,Europe,Western Europe,1,0,1,delay_gt0
+66222,CANCELED,Standard Class,Europe,Western Europe,3,4,-1,delay_lt0
+66230,CANCELED,Standard Class,Europe,Western Europe,6,4,2,delay_gt0
+66265,SUSPECTED_FRAUD,Second Class,Europe,Southern Europe,6,2,4,delay_gt0
+66266,CANCELED,Standard Class,Europe,Southern Europe,2,4,-2,delay_lt0
+66271,CANCELED,Second Class,Europe,Western Europe,2,2,0,delay_eq0
+66512,SUSPECTED_FRAUD,First Class,Europe,Western Europe,2,1,1,delay_gt0
+66618,SUSPECTED_FRAUD,Standard Class,Europe,Western Europe,4,4,0,delay_eq0
+66636,SUSPECTED_FRAUD,Standard Class,Europe,Western Europe,2,4,-2,delay_lt0
+67044,SUSPECTED_FRAUD,Standard Class,Europe,Western Europe,5,4,1,delay_gt0
+67153,SUSPECTED_FRAUD,First Class,Europe,Southern Europe,2,1,1,delay_gt0
+67183,SUSPECTED_FRAUD,Standard Class,Europe,Western Europe,4,4,0,delay_eq0
+67232,CANCELED,First Class,Europe,Southern Europe,2,1,1,delay_gt0
+67248,CANCELED,Standard Class,Europe,Southern Europe,4,4,0,delay_eq0
+67353,CANCELED,Same Day,Europe,Western Europe,0,0,0,delay_eq0
+67375,CANCELED,Standard Class,Europe,Western Europe,6,4,2,delay_gt0
+67568,SUSPECTED_FRAUD,Standard Class,Europe,Northern Europe,4,4,0,delay_eq0
+67687,SUSPECTED_FRAUD,First Class,Europe,Southern Europe,2,1,1,delay_gt0
+67896,SUSPECTED_FRAUD,Standard Class,Europe,Western Europe,2,4,-2,delay_lt0
+67955,SUSPECTED_FRAUD,Standard Class,Europe,Western Europe,6,4,2,delay_gt0
+67964,CANCELED,Standard Class,Europe,Western Europe,5,4,1,delay_gt0
+67969,CANCELED,Second Class,Europe,Southern Europe,5,2,3,delay_gt0
+68111,SUSPECTED_FRAUD,Standard Class,Europe,Western Europe,2,4,-2,delay_lt0
+68154,CANCELED,Second Class,Europe,Western Europe,5,2,3,delay_gt0
+68400,SUSPECTED_FRAUD,First Class,Europe,Southern Europe,2,1,1,delay_gt0
+68416,SUSPECTED_FRAUD,Second Class,Europe,Western Europe,2,2,0,delay_eq0
+68437,CANCELED,Standard Class,Europe,Southern Europe,3,4,-1,delay_lt0
+68467,CANCELED,Standard Class,Europe,Southern Europe,3,4,-1,delay_lt0
+68951,SUSPECTED_FRAUD,Standard Class,Europe,Northern Europe,2,4,-2,delay_lt0
+69202,SUSPECTED_FRAUD,Standard Class,Europe,Northern Europe,3,4,-1,delay_lt0
+69335,SUSPECTED_FRAUD,Standard Class,Europe,Western Europe,6,4,2,delay_gt0
+69430,SUSPECTED_FRAUD,First Class,Europe,Western Europe,2,1,1,delay_gt0
+69620,CANCELED,First Class,Europe,Western Europe,2,1,1,delay_gt0
+69700,SUSPECTED_FRAUD,Same Day,Europe,Northern Europe,0,0,0,delay_eq0
+69712,SUSPECTED_FRAUD,Standard Class,Europe,Western Europe,3,4,-1,delay_lt0
+69837,CANCELED,Second Class,Europe,Southern Europe,3,2,1,delay_gt0
+69844,CANCELED,Standard Class,Europe,Northern Europe,5,4,1,delay_gt0
+69845,SUSPECTED_FRAUD,Standard Class,Europe,Northern Europe,6,4,2,delay_gt0
+69956,SUSPECTED_FRAUD,First Class,Europe,Western Europe,2,1,1,delay_gt0
+69982,SUSPECTED_FRAUD,Second Class,Europe,Western Europe,3,2,1,delay_gt0
+70247,CANCELED,Standard Class,Europe,Southern Europe,3,4,-1,delay_lt0
+70265,CANCELED,Second Class,Europe,Western Europe,6,2,4,delay_gt0
+70294,SUSPECTED_FRAUD,Standard Class,Europe,Western Europe,5,4,1,delay_gt0
+70317,CANCELED,Second Class,Europe,Western Europe,3,2,1,delay_gt0
+70374,SUSPECTED_FRAUD,First Class,Europe,Western Europe,2,1,1,delay_gt0
+70379,CANCELED,Standard Class,Europe,Western Europe,5,4,1,delay_gt0
+70475,CANCELED,Standard Class,Europe,Western Europe,6,4,2,delay_gt0
+70521,SUSPECTED_FRAUD,Standard Class,Europe,Southern Europe,2,4,-2,delay_lt0
+70629,SUSPECTED_FRAUD,Standard Class,Europe,Southern Europe,5,4,1,delay_gt0
+70644,SUSPECTED_FRAUD,First Class,Europe,Western Europe,2,1,1,delay_gt0
+70731,CANCELED,Standard Class,Europe,Western Europe,2,4,-2,delay_lt0
+70798,SUSPECTED_FRAUD,Second Class,Europe,Southern Europe,4,2,2,delay_gt0
+70873,SUSPECTED_FRAUD,Second Class,Europe,Western Europe,4,2,2,delay_gt0
+70894,CANCELED,Second Class,Europe,Western Europe,5,2,3,delay_gt0
+70923,CANCELED,Second Class,Europe,Southern Europe,4,2,2,delay_gt0
+70972,CANCELED,Standard Class,Europe,Northern Europe,3,4,-1,delay_lt0
+71032,CANCELED,First Class,Europe,Northern Europe,2,1,1,delay_gt0
+71214,SUSPECTED_FRAUD,Second Class,Europe,Western Europe,5,2,3,delay_gt0
+71293,CANCELED,First Class,Europe,Northern Europe,2,1,1,delay_gt0
+71392,CANCELED,First Class,Europe,Western Europe,2,1,1,delay_gt0
+71402,SUSPECTED_FRAUD,Standard Class,Europe,Western Europe,3,4,-1,delay_lt0
+71423,SUSPECTED_FRAUD,Standard Class,Europe,Western Europe,4,4,0,delay_eq0
+71469,CANCELED,Second Class,Europe,Western Europe,5,2,3,delay_gt0
+71510,SUSPECTED_FRAUD,Same Day,Europe,Northern Europe,1,0,1,delay_gt0
+71562,SUSPECTED_FRAUD,Same Day,Europe,Western Europe,1,0,1,delay_gt0
+71705,SUSPECTED_FRAUD,Standard Class,Pacific Asia,Southeast Asia,6,4,2,delay_gt0
+71710,SUSPECTED_FRAUD,Standard Class,Pacific Asia,Southeast Asia,6,4,2,delay_gt0
+71866,SUSPECTED_FRAUD,Standard Class,Pacific Asia,Eastern Asia,2,4,-2,delay_lt0
+71867,SUSPECTED_FRAUD,Same Day,Pacific Asia,Eastern Asia,0,0,0,delay_eq0
+71968,CANCELED,Standard Class,Pacific Asia,South Asia,4,4,0,delay_eq0
+72041,SUSPECTED_FRAUD,Standard Class,Pacific Asia,Southeast Asia,2,4,-2,delay_lt0
+72128,CANCELED,Standard Class,Pacific Asia,Oceania,4,4,0,delay_eq0
+72177,CANCELED,Standard Class,Pacific Asia,South Asia,3,4,-1,delay_lt0
+72224,SUSPECTED_FRAUD,Second Class,Pacific Asia,South Asia,5,2,3,delay_gt0
+72246,SUSPECTED_FRAUD,First Class,Pacific Asia,Eastern Asia,2,1,1,delay_gt0
+72295,CANCELED,Standard Class,Pacific Asia,South Asia,6,4,2,delay_gt0
+72357,CANCELED,Standard Class,Pacific Asia,Southeast Asia,3,4,-1,delay_lt0
+72373,SUSPECTED_FRAUD,Same Day,Pacific Asia,Eastern Asia,0,0,0,delay_eq0
+72468,SUSPECTED_FRAUD,Standard Class,Pacific Asia,Oceania,4,4,0,delay_eq0
+72527,SUSPECTED_FRAUD,Same Day,Pacific Asia,Southeast Asia,1,0,1,delay_gt0
+72850,SUSPECTED_FRAUD,Standard Class,Pacific Asia,Oceania,6,4,2,delay_gt0
+72953,SUSPECTED_FRAUD,Standard Class,Pacific Asia,Eastern Asia,4,4,0,delay_eq0
+73049,SUSPECTED_FRAUD,Second Class,Pacific Asia,Oceania,5,2,3,delay_gt0
+73359,CANCELED,Standard Class,Pacific Asia,South Asia,5,4,1,delay_gt0
+73379,SUSPECTED_FRAUD,Standard Class,Pacific Asia,Eastern Asia,5,4,1,delay_gt0
+73407,CANCELED,First Class,Pacific Asia,Southeast Asia,2,1,1,delay_gt0
+73411,CANCELED,First Class,Pacific Asia,Southeast Asia,2,1,1,delay_gt0
+73440,SUSPECTED_FRAUD,Standard Class,Pacific Asia,Southeast Asia,6,4,2,delay_gt0
+73492,SUSPECTED_FRAUD,Standard Class,Pacific Asia,Oceania,3,4,-1,delay_lt0
+73536,SUSPECTED_FRAUD,First Class,Pacific Asia,Eastern Asia,2,1,1,delay_gt0
+73611,CANCELED,Standard Class,Pacific Asia,Eastern Asia,2,4,-2,delay_lt0
+73626,SUSPECTED_FRAUD,First Class,Pacific Asia,Eastern Asia,2,1,1,delay_gt0
+73761,CANCELED,Same Day,Pacific Asia,Eastern Asia,1,0,1,delay_gt0
+73880,SUSPECTED_FRAUD,Second Class,Pacific Asia,Oceania,6,2,4,delay_gt0
+74008,SUSPECTED_FRAUD,Standard Class,Pacific Asia,South Asia,4,4,0,delay_eq0
+74037,SUSPECTED_FRAUD,Standard Class,Pacific Asia,Oceania,3,4,-1,delay_lt0
+74213,CANCELED,Standard Class,Pacific Asia,Eastern Asia,4,4,0,delay_eq0
+74406,CANCELED,First Class,Pacific Asia,Oceania,2,1,1,delay_gt0
+74511,CANCELED,Standard Class,Pacific Asia,South Asia,2,4,-2,delay_lt0
+74545,SUSPECTED_FRAUD,Standard Class,Pacific Asia,Southeast Asia,6,4,2,delay_gt0
+74630,CANCELED,Standard Class,Pacific Asia,Oceania,6,4,2,delay_gt0
+74643,CANCELED,Standard Class,Pacific Asia,Southeast Asia,4,4,0,delay_eq0
+74816,SUSPECTED_FRAUD,Standard Class,Pacific Asia,Oceania,2,4,-2,delay_lt0
+74853,CANCELED,Standard Class,Pacific Asia,Oceania,4,4,0,delay_eq0
+75062,CANCELED,Standard Class,Pacific Asia,Southeast Asia,3,4,-1,delay_lt0
+75156,CANCELED,Standard Class,Pacific Asia,Eastern Asia,2,4,-2,delay_lt0
+75403,SUSPECTED_FRAUD,Standard Class,Pacific Asia,Southeast Asia,4,4,0,delay_eq0
+75404,SUSPECTED_FRAUD,Standard Class,Pacific Asia,Southeast Asia,5,4,1,delay_gt0
+75473,CANCELED,Standard Class,Pacific Asia,Southeast Asia,4,4,0,delay_eq0
+75595,SUSPECTED_FRAUD,Standard Class,Pacific Asia,Eastern Asia,6,4,2,delay_gt0
+75724,SUSPECTED_FRAUD,Same Day,Pacific Asia,Southeast Asia,0,0,0,delay_eq0
+75742,SUSPECTED_FRAUD,Standard Class,Pacific Asia,Eastern Asia,3,4,-1,delay_lt0
+75749,SUSPECTED_FRAUD,Standard Class,Pacific Asia,Oceania,5,4,1,delay_gt0
+75901,CANCELED,Same Day,Pacific Asia,Oceania,1,0,1,delay_gt0
+75935,CANCELED,Standard Class,Pacific Asia,Oceania,6,4,2,delay_gt0
+75949,CANCELED,Second Class,Pacific Asia,Oceania,5,2,3,delay_gt0
+75975,CANCELED,Standard Class,Pacific Asia,South Asia,6,4,2,delay_gt0
+76040,SUSPECTED_FRAUD,Standard Class,Pacific Asia,Oceania,6,4,2,delay_gt0
+76061,SUSPECTED_FRAUD,Standard Class,Pacific Asia,Oceania,2,4,-2,delay_lt0
+76069,CANCELED,Standard Class,Pacific Asia,Southeast Asia,5,4,1,delay_gt0
+76169,SUSPECTED_FRAUD,Standard Class,Pacific Asia,Eastern Asia,5,4,1,delay_gt0
+76280,CANCELED,Second Class,Pacific Asia,Oceania,6,2,4,delay_gt0
+76353,CANCELED,Second Class,Pacific Asia,Oceania,4,2,2,delay_gt0
+76363,SUSPECTED_FRAUD,Standard Class,Pacific Asia,Oceania,4,4,0,delay_eq0
+76621,SUSPECTED_FRAUD,Second Class,Pacific Asia,Oceania,2,2,0,delay_eq0
+76652,CANCELED,Standard Class,Pacific Asia,Oceania,3,4,-1,delay_lt0
+76959,SUSPECTED_FRAUD,Second Class,Pacific Asia,Oceania,5,2,3,delay_gt0
+77081,CANCELED,First Class,Pacific Asia,Southeast Asia,2,1,1,delay_gt0
