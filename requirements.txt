@@ -1,0 +1,20 @@
+# Python 3.11. Install torch separately with the CUDA build matching your driver:
+#   pip install torch --index-url https://download.pytorch.org/whl/cu121
+# Versions below are pins to be confirmed on first install, then frozen.
+numpy==1.26.4
+pandas==2.2.3
+pyarrow==18.1.0
+pydantic==2.10.3
+pyyaml==6.0.2
+python-dotenv==1.0.1
+scipy==1.14.1
+statsmodels==0.14.4
+rank-bm25==0.2.2
+faiss-cpu==1.9.0.post1
+sentence-transformers==3.3.1
+transformers==4.47.1
+ollama==0.4.4
+streamlit==1.41.0
+pytest==8.3.4
+# vanilla_gpt baseline scripts only (API-based, not used by the main pipeline)
+openai==1.58.1
