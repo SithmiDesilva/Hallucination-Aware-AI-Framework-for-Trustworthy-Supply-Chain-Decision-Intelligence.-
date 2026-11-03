@@ -1,0 +1,21 @@
+# secrets
+.env
+# environments
+.venv/
+.venv311/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ipynb_checkpoints/
+# data (large / licensed); see data/raw/README.md for how to obtain
+data/raw/*
+!data/raw/README.md
+!data/raw/.gitkeep
+data/processed/*
+!data/processed/.gitkeep
+data/cards/*
+!data/cards/.gitkeep
+# run artefacts
+runs/*
+!runs/.gitkeep
+vanilla_gpt/outputs/
