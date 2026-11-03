@@ -1,0 +1,82 @@
+[
+  {
+    "check": "1a",
+    "claim": "zero-sales days (no demand, or out of stock in reality?)",
+    "n": 863991,
+    "of": 1380331,
+    "share": "62.59%",
+    "note": "observed data cannot distinguish the two readings"
+  },
+  {
+    "check": "1b",
+    "claim": "zero-sales days inside a run of >= 28 zero days",
+    "n": 249922,
+    "of": 863991,
+    "share": "28.93%",
+    "note": "likely real stockout or delisting rather than lack of demand"
+  },
+  {
+    "check": "1c",
+    "claim": "days with zero demand while simulated stock was 0 (stock 0, shortfall 0)",
+    "n": 18439,
+    "of": 1355131,
+    "share": "1.36%",
+    "note": "simulated 'out of stock' that no customer noticed"
+  },
+  {
+    "check": "2a",
+    "claim": "days where simulated sales < observed sales (simulated shortfall)",
+    "n": 17895,
+    "of": 1355131,
+    "share": "1.32%",
+    "note": "observed units_sold vs simulated sim_units_sold disagree"
+  },
+  {
+    "check": "2b",
+    "claim": "item-weeks containing at least one such day",
+    "n": 11543,
+    "of": 194233,
+    "share": "5.94%",
+    "note": "weekly cards: observed units_sold and shortfall appear side by side"
+  },
+  {
+    "check": "3a",
+    "claim": "simulated shortfall days with trailing-28-day mean demand = 0 (ROP = 0)",
+    "n": 23,
+    "of": 17895,
+    "share": "0.13%",
+    "note": "shortfall caused by the policy collapsing after a zero stretch"
+  },
+  {
+    "check": "3b",
+    "claim": "simulated shortfall units on those days",
+    "n": 74,
+    "of": 71295,
+    "share": "0.10%",
+    "note": "share of all simulated shortfall units"
+  },
+  {
+    "check": "4a",
+    "claim": "series whose first priced day is after the first calendar day (launched late)",
+    "n": 606,
+    "of": 900,
+    "share": "67.33%",
+    "note": "questions before launch are unanswerable (not on sale), not 0 units"
+  },
+  {
+    "check": "4b",
+    "claim": "series-days dropped because the item had no price",
+    "n": 366569,
+    "of": 1746900,
+    "share": "20.98%",
+    "note": "no gaps inside a series (checked): all dropped days are before launch"
+  },
+  {
+    "check": "5a",
+    "claim": "Walmart weeks that straddle two calendar months",
+    "n": 56,
+    "of": 278,
+    "share": "20.14%",
+    "note": "monthly total != sum of weekly cards; week and month questions need explicit dates"
+  }
+]
