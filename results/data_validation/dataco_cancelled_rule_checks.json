@@ -1,0 +1,154 @@
+[
+  {
+    "check": "1a",
+    "claim": "cancelled orders (total)",
+    "scope": "all orders (65,752)",
+    "n": 2855,
+    "value": 2855,
+    "note": ""
+  },
+  {
+    "check": "1b",
+    "claim": "cancelled with recorded delay > 0",
+    "scope": "all orders (65,752)",
+    "n": 1650,
+    "value": 1650,
+    "note": ""
+  },
+  {
+    "check": "1c",
+    "claim": "cancelled with recorded delay = 0",
+    "scope": "all orders (65,752)",
+    "n": 545,
+    "value": 545,
+    "note": ""
+  },
+  {
+    "check": "1d",
+    "claim": "cancelled with recorded delay < 0",
+    "scope": "all orders (65,752)",
+    "n": 660,
+    "value": 660,
+    "note": ""
+  },
+  {
+    "check": "2a",
+    "claim": "non-cancelled orders: Late_delivery_risk == (real > scheduled)",
+    "scope": "all orders (65,752)",
+    "n": 62897,
+    "value": "100.0000%",
+    "note": "62897/62897 agree"
+  },
+  {
+    "check": "2b",
+    "claim": "same check at item-row level",
+    "scope": "all orders (65,752)",
+    "n": 172765,
+    "value": "100.0000%",
+    "note": "172765/172765 agree"
+  },
+  {
+    "check": "3a",
+    "claim": "cancelled by both Delivery Status and Order Status",
+    "scope": "all orders (65,752)",
+    "n": 2855,
+    "value": 2855,
+    "note": ""
+  },
+  {
+    "check": "3b",
+    "claim": "cancelled by Delivery Status only",
+    "scope": "all orders (65,752)",
+    "n": 0,
+    "value": 0,
+    "note": ""
+  },
+  {
+    "check": "3c",
+    "claim": "cancelled by Order Status only",
+    "scope": "all orders (65,752)",
+    "n": 0,
+    "value": 0,
+    "note": ""
+  },
+  {
+    "check": "3d",
+    "claim": "the two definitions agree on every order",
+    "scope": "all orders (65,752)",
+    "n": 65752,
+    "value": true,
+    "note": ""
+  },
+  {
+    "check": "1a",
+    "claim": "cancelled orders (total)",
+    "scope": "20k sample (19,999)",
+    "n": 854,
+    "value": 854,
+    "note": ""
+  },
+  {
+    "check": "1b",
+    "claim": "cancelled with recorded delay > 0",
+    "scope": "20k sample (19,999)",
+    "n": 474,
+    "value": 474,
+    "note": ""
+  },
+  {
+    "check": "1c",
+    "claim": "cancelled with recorded delay = 0",
+    "scope": "20k sample (19,999)",
+    "n": 186,
+    "value": 186,
+    "note": ""
+  },
+  {
+    "check": "1d",
+    "claim": "cancelled with recorded delay < 0",
+    "scope": "20k sample (19,999)",
+    "n": 194,
+    "value": 194,
+    "note": ""
+  },
+  {
+    "check": "2a",
+    "claim": "non-cancelled orders: Late_delivery_risk == (real > scheduled)",
+    "scope": "20k sample (19,999)",
+    "n": 19145,
+    "value": "100.0000%",
+    "note": "19145/19145 agree"
+  },
+  {
+    "check": "3a",
+    "claim": "cancelled by both Delivery Status and Order Status",
+    "scope": "20k sample (19,999)",
+    "n": 854,
+    "value": 854,
+    "note": ""
+  },
+  {
+    "check": "3b",
+    "claim": "cancelled by Delivery Status only",
+    "scope": "20k sample (19,999)",
+    "n": 0,
+    "value": 0,
+    "note": ""
+  },
+  {
+    "check": "3c",
+    "claim": "cancelled by Order Status only",
+    "scope": "20k sample (19,999)",
+    "n": 0,
+    "value": 0,
+    "note": ""
+  },
+  {
+    "check": "3d",
+    "claim": "the two definitions agree on every order",
+    "scope": "20k sample (19,999)",
+    "n": 19999,
+    "value": true,
+    "note": ""
+  }
+]
