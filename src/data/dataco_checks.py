@@ -12,7 +12,7 @@ import json
 import pandas as pd
 
 from src.config import ROOT, load_config
-from src.data.load_dataco import CANCELLED_STATUS, load_items, sample_orders, to_orders
+from src.data.load_dataco import CANCELLED_STATUS, clean, load_raw, sample_orders, to_orders
 
 OUT = ROOT / "results" / "data_validation"
 CANCELLED_ORDER_STATUSES = {"CANCELED", "SUSPECTED_FRAUD"}
@@ -73,9 +73,9 @@ def to_markdown(df: pd.DataFrame) -> str:
 
 def run() -> pd.DataFrame:
     cfg = load_config()
-    items = load_items()
+    items = clean(load_raw())
     orders = to_orders(items)
-    sample = sample_orders(orders, cfg["dataco"]["n_orders"], cfg["seed"])
+    sample = sample_orders(orders, cfg["data"]["dataco_orders"], cfg["seed"])
 
     rows: list[dict] = []
     crosstab = None
