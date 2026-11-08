@@ -14,10 +14,10 @@
 - Evidence for the rule: `python -m src.data.dataco_checks` -> `results/data_validation/`.
 - Source rows are order *items*; they are aggregated to one row per `Order Id`, and the build fails
   if order-level fields disagree within an order. Customer name, email, password and street are dropped.
-- 20,000 orders sampled with seed 42, stratified by `Market` x `Shipping Mode` (19,999 after rounding).
+- 20,000 orders sampled with seed 42, stratified by `Market` x `Shipping Mode` (exactly 20,000, largest-remainder allocation).
 
 ## M5 (inventory)
-- 3 stores (one each from CA, TX, WI) and 300 items stratified over FOODS / HOBBIES / HOUSEHOLD,
+- 3 declared stores (CA_1, TX_2, WI_3; `data.m5_stores` in the config) and 300 items stratified over FOODS / HOBBIES / HOUSEHOLD,
   seed 42 -> 900 item-store series. Sampling happens before the wide-to-long reshape.
 - Only priced days are kept (a missing `sell_price` means the item was not on sale).
 - Weeks are Walmart weeks (`wm_yr_wk`, Saturday to Friday).

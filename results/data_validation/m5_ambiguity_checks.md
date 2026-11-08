@@ -1,12 +1,12 @@
 | check | claim | n | of | share | note |
 |---|---|---|---|---|---|
-| 1a | zero-sales days (no demand, or out of stock in reality?) | 863991 | 1380331 | 62.59% | observed data cannot distinguish the two readings |
-| 1b | zero-sales days inside a run of >= 28 zero days | 249922 | 863991 | 28.93% | likely real stockout or delisting rather than lack of demand |
-| 1c | days with zero demand while simulated stock was 0 (stock 0, shortfall 0) | 18439 | 1355131 | 1.36% | simulated 'out of stock' that no customer noticed |
-| 2a | days where simulated sales < observed sales (simulated shortfall) | 17895 | 1355131 | 1.32% | observed units_sold vs simulated sim_units_sold disagree |
-| 2b | item-weeks containing at least one such day | 11543 | 194233 | 5.94% | weekly cards: observed units_sold and shortfall appear side by side |
-| 3a | simulated shortfall days with trailing-28-day mean demand = 0 (ROP = 0) | 23 | 17895 | 0.13% | shortfall caused by the policy collapsing after a zero stretch |
-| 3b | simulated shortfall units on those days | 74 | 71295 | 0.10% | share of all simulated shortfall units |
-| 4a | series whose first priced day is after the first calendar day (launched late) | 606 | 900 | 67.33% | questions before launch are unanswerable (not on sale), not 0 units |
-| 4b | series-days dropped because the item had no price | 366569 | 1746900 | 20.98% | no gaps inside a series (checked): all dropped days are before launch |
+| 1a | zero-sales days (no demand, or out of stock in reality?) | 899929 | 1459697 | 61.65% | observed data cannot distinguish the two readings |
+| 1b | zero-sales days inside a run of >= 28 zero days | 246708 | 899929 | 27.41% | likely real stockout or delisting rather than lack of demand |
+| 1c | days with zero demand while simulated stock was 0 (stock 0, shortfall 0) | 18020 | 1434497 | 1.26% | simulated 'out of stock' that no customer noticed |
+| 2a | days where simulated sales < observed sales (simulated shortfall) | 18337 | 1434497 | 1.28% | observed units_sold vs simulated sim_units_sold disagree |
+| 2b | item-weeks containing at least one such day | 11835 | 205571 | 5.76% | weekly cards: observed units_sold and shortfall appear side by side |
+| 3a | simulated shortfall days with trailing-28-day mean demand = 0 (ROP = 0) | 18 | 18337 | 0.10% | shortfall caused by the policy collapsing after a zero stretch |
+| 3b | simulated shortfall units on those days | 43 | 62472 | 0.07% | share of all simulated shortfall units |
+| 4a | series whose first priced day is after the first calendar day (launched late) | 527 | 900 | 58.56% | questions before launch are unanswerable (not on sale), not 0 units |
+| 4b | series-days dropped because the item had no price | 287203 | 1746900 | 16.44% | no gaps inside a series (checked): all dropped days are before launch |
 | 5a | Walmart weeks that straddle two calendar months | 56 | 278 | 20.14% | monthly total != sum of weekly cards; week and month questions need explicit dates |
