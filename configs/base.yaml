@@ -1,43 +1,35 @@
-# Base config. Every run copies this to runs/<run_id>/config.yaml and overrides what it changes.
+# Base config, in the structure of the plan's configs/final.yaml. Every run copies it to
+# runs/<run_id>/config.yaml. final.yaml is cut from this once tau, retrieval mode and prompts are frozen.
 seed: 42
 
-models:
-  generator: llama3.1:8b-instruct-q4_K_M   # frozen 2026-10-30; start server with scripts/start_ollama.ps1
-  generator_num_ctx: 3072
-  generator_temperature: 0.0
-  max_output_tokens: 400
-  extractor: same_as_generator              # separate step, own fixed prompt
-  embedder: BAAI/bge-m3
-  nli_verifier: lytang/MiniCheck-Flan-T5-Large   # must differ from the generator
+data:
+  m5_stores: [CA_1, TX_2, WI_3]
+  m5_items: 300
+  dataco_orders: 20000
 
-retrieval:
-  mode: hybrid        # dense | bm25 | hybrid; fixed after pilot recall@5
-  k: 5
+# Card scope: the last 52 complete Walmart weeks and last 12 complete calendar months of M5; DataCo region-month
+# cells need at least this many orders. The corpus is fixed once questions are generated.
+cards: {m5_weeks: 52, m5_months: 12, region_month_min_orders: 10}
 
-verification:
-  tau: 0.5            # tuned on dev only, then frozen
-  tolerance:
-    count_abs: 1
-    price_rel: 0.01
-    simulated_rel: 0.01
-    rate_abs_pp: 0.5
+# z is derived: round(NormalDist().inv_cdf(service_level), 3) -> 1.645 for 0.95
+simulation: {lead_time: 7, review: 7, service_level: 0.95, window: 28, warmup: 28}
 
-simulation:
-  lead_time_days: 7
-  review_cover_days: 7
-  service_level_z: 1.645
-  demand_window_days: 28
-  warmup_days: 28
+retrieval: {mode: hybrid, k: 5, dense_model: BAAI/bge-m3, dense_revision: null}  # pin revision when downloaded; mode fixed after pilot recall@5
 
-m5:
-  n_stores: 3
-  n_items: 300
-  weeks_per_series: 52
-dataco:
-  n_orders: 20000
+generator:
+  backend: ollama
+  model: llama3.1:8b-instruct-q4_K_M
+  digest: 46e0c10c039e            # `ollama list` ID, verified 2026-10-30
+  num_ctx: 4096
+  max_new_tokens: 300
+  temperature: 0
+  keep_alive: 0
+  # Start the server with scripts/start_ollama.ps1; these change memory layout (and can nudge outputs),
+  # so they are part of the experiment's configuration.
+  server_env: {OLLAMA_FLASH_ATTENTION: "1", OLLAMA_KV_CACHE_TYPE: q8_0, LLAMA_ARG_FIT_TARGET: "256"}
 
-prompts:
-  generate: gen_v1
-  extract: extract_v1
-  abstain: abstain_v1
-  selfcheck: selfcheck_v1
+extractor: {model: same_as_generator, prompt: extract_v1}   # separate step with its own fixed prompt
+nli: {model: lytang/MiniCheck-Flan-T5-Large, revision: null, tau: 0.5}   # must differ from generator; tau tuned on dev only
+prompts: {b0: gen_b0_v1, b1: gen_b1_v1, b2: gen_b2_v1, b3_judge: judge_b3_v1}
+tolerances: {count_abs: 1, rel: 0.01, rate_pp: 0.005}
+benchmark: {version: v1.0, checksums: benchmark/CHECKSUMS}
