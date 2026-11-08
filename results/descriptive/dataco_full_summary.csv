@@ -1,0 +1,22 @@
+Market,Shipping Mode,orders,cancelled,late_rate,mean_delay_days
+Africa,First Class,557,21,1.0,1.0
+Africa,Same Day,234,11,0.471,0.471
+Africa,Second Class,715,30,0.804,1.987
+Africa,Standard Class,2348,103,0.398,0.005
+Europe,First Class,2878,125,1.0,1.0
+Europe,Same Day,999,50,0.482,0.482
+Europe,Second Class,3609,150,0.802,2.014
+Europe,Standard Class,11075,473,0.398,-0.014
+LATAM,First Class,2638,140,1.0,1.0
+LATAM,Same Day,913,43,0.508,0.508
+LATAM,Second Class,3307,147,0.794,1.997
+LATAM,Standard Class,10323,437,0.393,-0.015
+Pacific Asia,First Class,2668,125,1.0,1.0
+Pacific Asia,Same Day,959,41,0.479,0.479
+Pacific Asia,Second Class,3469,131,0.803,2.004
+Pacific Asia,Standard Class,10481,427,0.404,0.006
+USCA,First Class,1338,66,1.0,1.0
+USCA,Same Day,466,19,0.456,0.456
+USCA,Second Class,1678,64,0.799,1.995
+USCA,Standard Class,5097,252,0.4,0.004
+All,All,65752,2855,0.573,0.566
