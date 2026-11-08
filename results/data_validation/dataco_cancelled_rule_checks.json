@@ -82,55 +82,55 @@
   {
     "check": "1a",
     "claim": "cancelled orders (total)",
-    "scope": "20k sample (19,999)",
-    "n": 854,
-    "value": 854,
+    "scope": "20k sample (20,000)",
+    "n": 841,
+    "value": 841,
     "note": ""
   },
   {
     "check": "1b",
     "claim": "cancelled with recorded delay > 0",
-    "scope": "20k sample (19,999)",
-    "n": 474,
-    "value": 474,
+    "scope": "20k sample (20,000)",
+    "n": 488,
+    "value": 488,
     "note": ""
   },
   {
     "check": "1c",
     "claim": "cancelled with recorded delay = 0",
-    "scope": "20k sample (19,999)",
-    "n": 186,
-    "value": 186,
+    "scope": "20k sample (20,000)",
+    "n": 173,
+    "value": 173,
     "note": ""
   },
   {
     "check": "1d",
     "claim": "cancelled with recorded delay < 0",
-    "scope": "20k sample (19,999)",
-    "n": 194,
-    "value": 194,
+    "scope": "20k sample (20,000)",
+    "n": 180,
+    "value": 180,
     "note": ""
   },
   {
     "check": "2a",
     "claim": "non-cancelled orders: Late_delivery_risk == (real > scheduled)",
-    "scope": "20k sample (19,999)",
-    "n": 19145,
+    "scope": "20k sample (20,000)",
+    "n": 19159,
     "value": "100.0000%",
-    "note": "19145/19145 agree"
+    "note": "19159/19159 agree"
   },
   {
     "check": "3a",
     "claim": "cancelled by both Delivery Status and Order Status",
-    "scope": "20k sample (19,999)",
-    "n": 854,
-    "value": 854,
+    "scope": "20k sample (20,000)",
+    "n": 841,
+    "value": 841,
     "note": ""
   },
   {
     "check": "3b",
     "claim": "cancelled by Delivery Status only",
-    "scope": "20k sample (19,999)",
+    "scope": "20k sample (20,000)",
     "n": 0,
     "value": 0,
     "note": ""
@@ -138,7 +138,7 @@
   {
     "check": "3c",
     "claim": "cancelled by Order Status only",
-    "scope": "20k sample (19,999)",
+    "scope": "20k sample (20,000)",
     "n": 0,
     "value": 0,
     "note": ""
@@ -146,8 +146,8 @@
   {
     "check": "3d",
     "claim": "the two definitions agree on every order",
-    "scope": "20k sample (19,999)",
-    "n": 19999,
+    "scope": "20k sample (20,000)",
+    "n": 20000,
     "value": true,
     "note": ""
   }
