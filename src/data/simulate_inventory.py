@@ -13,6 +13,7 @@ Parameters are fixed before any question is written (configs/base.yaml).
 """
 import math
 from dataclasses import dataclass
+from statistics import NormalDist
 
 import numpy as np
 import pandas as pd
@@ -33,11 +34,24 @@ class SimParams:
     window: int = 28
     warmup: int = 28
 
-    @classmethod
-    def from_config(cls, cfg: dict) -> "SimParams":
-        s = cfg["simulation"]
-        return cls(s["lead_time_days"], s["review_cover_days"], s["service_level_z"],
-                   s["demand_window_days"], s["warmup_days"])
+
+def params(cfg: dict | None = None) -> SimParams:
+    """Simulation parameters from the config; z is derived from the service level (0.95 -> 1.645)."""
+    s = (cfg or load_config())["simulation"]
+    z = round(NormalDist().inv_cdf(s["service_level"]), 3)
+    return SimParams(s["lead_time"], s["review"], z, s["window"], s.get("warmup", s["window"]))
+
+
+def rolling_stats(demand: np.ndarray, window: int) -> tuple[np.ndarray, np.ndarray]:
+    """Mean and sample std of the `window` days BEFORE each day t (NaN while t < window)."""
+    demand = np.asarray(demand, dtype=float)
+    mu = np.full(len(demand), np.nan)
+    sigma = np.full(len(demand), np.nan)
+    for t in range(window, len(demand)):
+        hist = demand[t - window:t]
+        mu[t] = hist.mean()
+        sigma[t] = hist.std(ddof=1) if window > 1 else 0.0
+    return mu, sigma
 
 
 def simulate_series(demand: np.ndarray, p: SimParams) -> pd.DataFrame:
@@ -48,13 +62,12 @@ def simulate_series(demand: np.ndarray, p: SimParams) -> pd.DataFrame:
     if n <= start:
         return pd.DataFrame(columns=["day_idx", *STATE_COLS])
 
+    mu_all, sigma_all = rolling_stats(demand, p.window)
     rows = []
     pending: list[tuple[int, int]] = []  # (arrival day index, quantity)
     on_hand = None
     for t in range(start, n):
-        hist = demand[t - p.window:t]
-        mu = hist.mean()
-        sigma = hist.std(ddof=1) if p.window > 1 else 0.0
+        mu, sigma = mu_all[t], sigma_all[t]
         ss = p.z * sigma * math.sqrt(p.lead_time)
         rop = mu * p.lead_time + ss
         s_level = rop + mu * p.review_cover
@@ -104,7 +117,7 @@ def simulate_all(long: pd.DataFrame, p: SimParams) -> pd.DataFrame:
 def build_simulation(cfg: dict | None = None) -> pd.DataFrame:
     cfg = cfg or load_config()
     long = pd.read_parquet(PROCESSED / "m5_long.parquet")
-    out = simulate_all(long, SimParams.from_config(cfg))
+    out = simulate_all(long, params(cfg))
     out.to_parquet(PROCESSED / "m5_sim.parquet", index=False)
     return out
 
