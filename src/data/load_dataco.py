@@ -8,6 +8,7 @@ Definitions (also in data/README.md); proven by src/data/dataco_checks.py:
   status              = Delivery Status as given
 The raw "Days for shipping (real)" and "Late_delivery_risk" columns are kept untouched.
 """
+import numpy as np
 import pandas as pd
 
 from src.config import PROCESSED, RAW, load_config
@@ -57,34 +58,32 @@ def to_orders(items: pd.DataFrame) -> pd.DataFrame:
     return apply_cancelled_rule(orders)
 
 
-def sample_orders(orders: pd.DataFrame, n: int, seed: int) -> pd.DataFrame:
-    """Stratified by market x shipping mode, proportional allocation."""
-    strata = orders.groupby(["Market", "Shipping Mode"], group_keys=False)
-    frac = min(1.0, n / len(orders))
-    out = strata.sample(frac=frac, random_state=seed)
-    return out.sort_values("Order Id").reset_index(drop=True)
+def sample_orders(orders: pd.DataFrame, n: int = 20000, seed: int = 42) -> pd.DataFrame:
+    """Stratified by market x shipping mode, proportional allocation summing to exactly n
+    (largest-remainder rounding)."""
+    if n >= len(orders):
+        return orders.sort_values("Order Id").reset_index(drop=True)
+    keys = ["Market", "Shipping Mode"]
+    sizes = orders.groupby(keys).size()
+    exact = sizes * n / len(orders)
+    alloc = np.floor(exact).astype(int)
+    for key in (exact - alloc).sort_values(ascending=False, kind="stable").index[: n - int(alloc.sum())]:
+        alloc[key] += 1
+    parts = [g.sample(n=int(alloc[key]), random_state=seed) for key, g in orders.groupby(keys)]
+    return pd.concat(parts).sort_values("Order Id").reset_index(drop=True)
 
 
-def descriptive_table(orders: pd.DataFrame) -> pd.DataFrame:
-    return (
-        orders.groupby(["Market", "Shipping Mode"])
-        .agg(orders=("Order Id", "size"), cancelled=("is_cancelled", "sum"),
-             late_rate=("late", "mean"), mean_delay=("shipping_delay_days", "mean"))
-        .round(3).reset_index()
-    )
-
-
-def load_items() -> pd.DataFrame:
-    return clean(pd.read_csv(RAW / "dataco" / "DataCoSupplyChainDataset.csv", encoding="latin-1"))
+def load_raw() -> pd.DataFrame:
+    """The DataCo item-level file. It is not UTF-8."""
+    return pd.read_csv(RAW / "dataco" / "DataCoSupplyChainDataset.csv", encoding="latin-1")
 
 
 def build_dataco(cfg: dict | None = None) -> pd.DataFrame:
     cfg = cfg or load_config()
-    orders = to_orders(load_items())
-    sampled = sample_orders(orders, cfg["dataco"]["n_orders"], cfg["seed"])
+    orders = to_orders(clean(load_raw()))
+    sampled = sample_orders(orders, cfg["data"]["dataco_orders"], cfg["seed"])
     PROCESSED.mkdir(parents=True, exist_ok=True)
     sampled.to_parquet(PROCESSED / "dataco_orders.parquet", index=False)
-    descriptive_table(sampled).to_csv(PROCESSED / "dataco_descriptive.csv", index=False)
     return sampled
 
 
