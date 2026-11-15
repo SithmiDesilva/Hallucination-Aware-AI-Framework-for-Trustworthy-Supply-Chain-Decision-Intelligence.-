@@ -17,5 +17,7 @@ ollama==0.4.4
 streamlit==1.41.0
 pytest==8.3.4
 jinja2==3.1.4
+pytest>=8.0.0
+PyYAML>=6.0.0
 # vanilla_gpt baseline scripts only (API-based, not used by the main pipeline)
 openai==1.58.1

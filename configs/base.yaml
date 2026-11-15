@@ -21,8 +21,11 @@ generator:
   model: llama3.1:8b-instruct-q4_K_M
   digest: 46e0c10c039e            # `ollama list` ID, verified 2026-10-30
   num_ctx: 4096
-  max_new_tokens: 300
-  temperature: 0
+  max_new_tokens: 300            # answers; extraction and the B3 judgement have their own limits below
+  max_new_tokens_extract: 800
+  max_new_tokens_judge: 5
+  temperature: 0                 # greedy
+  top_p: 1
   keep_alive: 0
   # Start the server with scripts/start_ollama.ps1; these change memory layout (and can nudge outputs),
   # so they are part of the experiment's configuration.

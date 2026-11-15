@@ -131,6 +131,7 @@ class Answer(_Model):
     abstained: bool
     seconds: float = Field(ge=0)
     n_calls: int = Field(default=1, ge=0)
+    truncated: bool = False  # the generator hit max_new_tokens, so the answer may be cut off
 
 
 M = TypeVar("M", bound=BaseModel)
