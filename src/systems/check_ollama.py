@@ -22,10 +22,10 @@ def _post(path: str, body: dict) -> dict:
 
 
 def main() -> None:
-    m = load_config()["models"]
+    m = load_config()["generator"]
     out = _post("/api/chat", {
-        "model": m["generator"], "stream": False, "format": SCHEMA, "keep_alive": "5m",
-        "options": {"num_ctx": m["generator_num_ctx"], "temperature": 0},
+        "model": m["model"], "stream": False, "format": SCHEMA, "keep_alive": "5m",
+        "options": {"num_ctx": m["num_ctx"], "temperature": 0},
         "messages": [{"role": "user", "content": "Demand last month was 1200 units. "
                       "Forecast next month with 15% growth. Reply as JSON."}],
     })
@@ -38,7 +38,7 @@ def main() -> None:
             gpu = mod["size_vram"] / mod["size"]
             print(f"{mod['name']}: {gpu:.0%} on GPU")
             assert gpu > 0.99, "layers offloaded to CPU: lower num_ctx or try the other model"
-    _post("/api/generate", {"model": m["generator"], "keep_alive": 0})  # unload
+    _post("/api/generate", {"model": m["model"], "keep_alive": 0})  # unload
 
 
 if __name__ == "__main__":
