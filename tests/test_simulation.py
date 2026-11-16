@@ -9,7 +9,7 @@ import math
 import numpy as np
 import pytest
 
-from src.data.simulate_inventory import SimParams, simulate_series
+from src.data.simulate_inventory import SimParams, params, rolling_stats, simulate_series
 
 P = SimParams(lead_time=2, review_cover=1, z=1.0, window=3, warmup=3)
 RNG = np.random.default_rng(0)
@@ -74,3 +74,15 @@ def test_hand_computed_days():
     d5 = sim.loc[5]
     assert d5["on_hand_end"] == 11
     assert d5["order_placed"] and d5["order_qty"] == 6 and d5["on_order"] == 6
+
+
+def test_params_derives_z_from_service_level():
+    cfg = {"simulation": {"lead_time": 7, "review": 7, "service_level": 0.95, "window": 28, "warmup": 28}}
+    assert params(cfg) == SimParams(7, 7, 1.645, 28, 28)
+
+
+def test_rolling_stats_use_only_the_days_before_t():
+    mu, sd = rolling_stats(np.array([2, 4, 6, 5, 3.0]), 3)
+    assert np.isnan(mu[:3]).all() and np.isnan(sd[:3]).all()
+    assert mu[3] == 4 and sd[3] == pytest.approx(2)  # window [2, 4, 6]
+    assert mu[4] == 5 and sd[4] == pytest.approx(1)  # window [4, 6, 5]
