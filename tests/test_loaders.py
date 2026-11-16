@@ -1,16 +1,17 @@
-"""Unit tests for the data loaders (src/data/load_m5.py, src/data/load_dataco.py).
+"""Unit tests for the data loaders (src/data/load_m5.py, src/data/load_dataco.py) on small synthetic tables.
 
-Cover seeded/stratified sampling of M5 series and DataCo orders, M5 wide-to-long reshaping
-(unpriced days dropped, state-specific SNAP flag), and DataCo order aggregation: delay definition,
-the lateness rule, cancelled orders keeping raw values but no delay/lateness, and rejection of
-conflicting item rows.
+M5: the declared store scope and seeded, category-stratified item sampling; the wide-to-long
+reshape (rows = series x days); the calendar/price join (unpriced days dropped, state-specific SNAP flag).
+DataCo: personal columns dropped; order aggregation and the delay definition; the lateness rule;
+cancelled orders keeping raw values but no delay/lateness; rejection of conflicting item rows;
+a stratified sample of exactly n orders.
+Checks on the real processed tables are in test_data_integrity.py.
 """
-import numpy as np
 import pandas as pd
 import pytest
 
-from src.data.load_dataco import REQUIRED, sample_orders, to_orders
-from src.data.load_m5 import sample_series, to_long
+from src.data.load_dataco import PII_COLS, REQUIRED, clean, sample_orders, to_orders
+from src.data.load_m5 import join_calendar_prices, sample_scope, to_long
 
 
 def make_sales():
@@ -25,30 +26,47 @@ def make_sales():
     return pd.DataFrame(rows)
 
 
-def test_sample_series_is_stratified_and_seeded():
+def test_sample_scope_keeps_declared_stores_and_stratifies_items():
     sales = make_sales()
-    a = sample_series(sales, n_stores=3, n_items=9, seed=42)
-    b = sample_series(sales, n_stores=3, n_items=9, seed=42)
+    a = sample_scope(sales, stores=["CA_1", "TX_1", "WI_1"], n_items=9, seed=42)
+    b = sample_scope(sales, stores=["CA_1", "TX_1", "WI_1"], n_items=9, seed=42)
     assert a.equals(b)
-    assert a["store_id"].nunique() == 3
-    assert set(a["state_id"]) == {"CA", "TX", "WI"}
+    assert sorted(a["store_id"].unique()) == ["CA_1", "TX_1", "WI_1"]
     assert a.groupby("cat_id")["item_id"].nunique().tolist() == [3, 3, 3]
+    assert len(a) == 3 * 9  # every picked item appears in every picked store
 
 
-def test_to_long_drops_unpriced_days_and_picks_state_snap():
-    sales = make_sales().iloc[:1]
+def test_sample_scope_without_stores_draws_one_per_state():
+    a = sample_scope(make_sales(), n_stores=3, n_items=9, seed=42)
+    assert set(a["state_id"]) == {"CA", "TX", "WI"} and a["store_id"].nunique() == 3
+
+
+def test_sample_scope_rejects_unknown_store():
+    with pytest.raises(ValueError):
+        sample_scope(make_sales(), stores=["CA_1", "ZZ_9"], n_items=9)
+
+
+def test_to_long_row_count_is_series_times_days():
+    sales = make_sales()
+    long = to_long(sales)
+    assert len(long) == len(sales) * 2
+    assert long["units"].dtype == "int32" and set(long["d"]) == {"d_1", "d_2"}
+
+
+def test_join_drops_unpriced_days_and_picks_state_snap():
+    long = to_long(make_sales().iloc[:1])
     cal = pd.DataFrame({
-        "d": ["d_1", "d_2"], "date": ["2011-01-29", "2011-01-30"], "wm_yr_wk": [11101, 11101],
+        "d": ["d_1", "d_2"], "date": ["2011-01-29", "2011-01-30"], "wm_yr_wk": [11101, 11102],
         "weekday": ["Saturday", "Sunday"], "event_name_1": [None, None], "event_type_1": [None, None],
         "event_name_2": [None, None], "event_type_2": [None, None],
         "snap_CA": [1, 0], "snap_TX": [0, 0], "snap_WI": [0, 0],
     })
-    prices = pd.DataFrame({"store_id": ["CA_1"], "item_id": [sales.iloc[0]["item_id"]],
-                           "wm_yr_wk": [11101], "sell_price": [1.25]})
-    long = to_long(sales, cal, prices)
-    assert len(long) == 2 and long["snap"].tolist() == [1, 0]
-    long_unpriced = to_long(sales, cal, prices.assign(wm_yr_wk=99999))
-    assert long_unpriced.empty
+    prices = pd.DataFrame({"store_id": ["CA_1", "CA_1"], "item_id": [long.iloc[0]["item_id"]] * 2,
+                           "wm_yr_wk": [11101, 11102], "sell_price": [1.25, None]})
+    joined = join_calendar_prices(long, cal, prices)
+    assert len(joined) == 1  # the week with no price is not on sale
+    assert joined["snap"].tolist() == [1] and joined["sell_price"].notna().all()
+    assert join_calendar_prices(long, cal, prices.assign(wm_yr_wk=[99998, 99999])).empty
 
 
 def make_items():
@@ -61,6 +79,13 @@ def make_items():
                      "Days for shipping (real)": 5, "Days for shipment (scheduled)": 3,
                      "Late_delivery_risk": 1})
     return pd.DataFrame(rows)
+
+
+def test_clean_drops_personal_columns():
+    items = make_items()
+    for col in PII_COLS:
+        items[col] = "x"
+    assert not set(PII_COLS) & set(clean(items).columns)
 
 
 def test_to_orders_aggregates_and_defines_delay():
@@ -101,8 +126,13 @@ def test_to_orders_rejects_conflicting_items():
         to_orders(items)
 
 
-def test_sample_orders_size_and_seed():
-    orders = pd.DataFrame({"Order Id": range(1000), "Market": ["A", "B"] * 500,
+@pytest.mark.parametrize("n", [100, 333, 999])
+def test_sample_orders_is_exactly_n_stratified_and_seeded(n):
+    orders = pd.DataFrame({"Order Id": range(1000), "Market": ["A", "B", "B"] * 333 + ["A"],
                            "Shipping Mode": ["X", "Y", "Z", "W"] * 250})
-    s = sample_orders(orders, 100, seed=1)
-    assert abs(len(s) - 100) <= 8 and s.equals(sample_orders(orders, 100, seed=1))
+    s = sample_orders(orders, n, seed=1)
+    assert len(s) == n and s["Order Id"].is_unique
+    assert s.equals(sample_orders(orders, n, seed=1))
+    full = orders.groupby(["Market", "Shipping Mode"]).size()
+    got = s.groupby(["Market", "Shipping Mode"]).size().reindex(full.index, fill_value=0)
+    assert ((got - full * n / len(orders)).abs() < 1).all()  # proportional within rounding
