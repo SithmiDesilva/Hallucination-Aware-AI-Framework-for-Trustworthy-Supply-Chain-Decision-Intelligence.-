@@ -110,6 +110,15 @@ def test_week_cards_match_hand_calculation(m5_synth):
     assert any(c.fields["events"] == "Cinco" for c in m5_week_cards(long, sim, n_weeks=30))
 
 
+def test_the_string_none_means_no_event(m5_synth):
+    """The preprocessed calendar fills missing events with the string "None"; the card must not call that an event."""
+    long, sim = m5_synth
+    filled = long.assign(event_name_1=long["event_name_1"].fillna("None"), event_name_2=long["event_name_2"].fillna("None"))
+    assert [c.fields["events"] for c in m5_week_cards(filled, sim, n_weeks=30)] == [c.fields["events"] for c in m5_week_cards(long, sim, n_weeks=30)]
+    assert not any("None" in c.fields["events"] for c in m5_week_cards(filled, sim, n_weeks=30))
+    assert any(c.fields["events"] == "none" for c in m5_week_cards(filled, sim, n_weeks=30))
+
+
 def test_warmup_weeks_and_partial_weeks_get_no_card(m5_synth):
     long, sim = m5_synth
     starts = {c.fields["week_start"] for c in m5_week_cards(long, sim, n_weeks=100)}
@@ -130,8 +139,8 @@ def test_month_cards_match_hand_calculation_and_skip_incomplete_months(m5_synth)
         k = c.key
         S = sim[(sim.store_id == k["store_id"]) & (sim.date.dt.to_period("M").astype(str) == k["month"])]
         assert c.fields["total_units"] == S.demand.sum()
-        assert c.fields["mean_daily_units"] == pytest.approx(S.demand.mean(), abs=0.005)
-        assert c.fields["sd_daily_units"] == pytest.approx(S.demand.std(ddof=1), abs=0.005)
+        assert c.fields["mean_daily_units"] == pytest.approx(S.demand.mean(), abs=0.0051)  # card values are rounded to 2 decimals; an exact half-step must pass
+        assert c.fields["sd_daily_units"] == pytest.approx(S.demand.std(ddof=1), abs=0.0051)  # card values are rounded to 2 decimals; an exact half-step must pass
         assert c.fields["shortfall_days"] == (S.shortfall > 0).sum()
 
 
@@ -144,10 +153,10 @@ def make_orders():
         (5, "R2", "2016-01", "Same Day", False, 0), (6, "R1", "2016-02", "Standard Class", False, 2),
     ]:
         rows.append({
-            "Order Id": oid, "Order Region": region, "Market": "M", "Shipping Mode": mode,
-            "order date (DateOrders)": pd.Timestamp(f"{month}-10 12:00"), "shipping date (DateOrders)": pd.Timestamp(f"{month}-13"),
-            "Delivery Status": "Shipping canceled" if cancelled else "Late delivery",
-            "Days for shipment (scheduled)": 3, "Days for shipping (real)": 3 + delay, "raw_delay_days": delay,
+            "order_id": oid, "order_region": region, "market": "M", "shipping_mode": mode,
+            "order_date": pd.Timestamp(f"{month}-10 12:00"), "shipping_date": pd.Timestamp(f"{month}-13"),
+            "delivery_status": "Shipping canceled" if cancelled else "Late delivery",
+            "days_for_shipment_scheduled": 3, "days_for_shipping_real": 3 + delay, "raw_delay_days": delay,
             "is_cancelled": cancelled, "shipping_delay_days": pd.NA if cancelled else delay,
             "late": pd.NA if cancelled else delay > 0,
         })
@@ -193,7 +202,8 @@ def real():
         "long_by": dict(tuple(long.groupby(["store_id", "item_id"]))),
         "sim_by": dict(tuple(sim.groupby(["store_id", "item_id"]))),
         "days": long.drop_duplicates("date")[["date", "event_name_1", "event_name_2"]],
-        "orders": pd.read_parquet(PROCESSED / "dataco_orders.parquet"),
+        "orders": pd.read_parquet(PROCESSED / "dataco_orders.parquet"),          # the sample: one order card each
+        "all_orders": pd.read_parquet(PROCESSED / "dataco_orders_all.parquet"),  # every order: the region x month aggregates
     }
 
 
@@ -231,13 +241,13 @@ def test_50_random_week_cards_match_direct_queries(real):
         S = sim[(sim.date >= s) & (sim.date <= e)].sort_values("date")
         assert len(L) == 7 and len(S) == 7 and L.date.min() == s and L.date.max() == e
         assert f["units_sold"] == L.units.sum() and f["snap_days"] == L.snap.sum()
-        assert f["mean_price"] == pytest.approx(L.sell_price.mean(), abs=0.005)
+        assert f["mean_price"] == pytest.approx(L.sell_price.mean(), abs=0.0051)  # card values are rounded to 2 decimals; an exact half-step must pass
         assert f["on_hand_end"] == S.on_hand_end.iloc[-1]
         assert f["rop"] == pytest.approx(S.rop.iloc[-1], abs=0.05) and f["safety_stock"] == pytest.approx(S.safety_stock.iloc[-1], abs=0.05)
         assert f["order_qty"] == S.order_qty.sum() and f["order_placed"] == bool(S.order_placed.any())
         assert f["shortfall"] == S.shortfall.sum()
         d = real["days"][real["days"].date.between(s, e)]
-        names = sorted(set(d.event_name_1.dropna()) | set(d.event_name_2.dropna()))
+        names = sorted({n for n in (*d.event_name_1, *d.event_name_2) if isinstance(n, str) and n != "None"})  # "None" = no event
         assert f["events"] == ("; ".join(names) if names else "none")
 
 
@@ -249,25 +259,25 @@ def test_50_random_month_cards_match_direct_queries(real):
         S = sim[sim.date.dt.strftime("%Y-%m") == k["month"]]
         assert len(S) == pd.Period(k["month"]).days_in_month
         assert f["total_units"] == S.demand.sum()
-        assert f["mean_daily_units"] == pytest.approx(S.demand.mean(), abs=0.005)
-        assert f["sd_daily_units"] == pytest.approx(S.demand.std(ddof=1), abs=0.005)
+        assert f["mean_daily_units"] == pytest.approx(S.demand.mean(), abs=0.0051)  # card values are rounded to 2 decimals; an exact half-step must pass
+        assert f["sd_daily_units"] == pytest.approx(S.demand.std(ddof=1), abs=0.0051)  # card values are rounded to 2 decimals; an exact half-step must pass
         assert f["shortfall_days"] == (S.shortfall > 0).sum()
 
 
 @needs_cards
 def test_50_random_order_cards_match_direct_queries(real):
-    orders = real["orders"].set_index("Order Id")
+    orders = real["orders"].set_index("order_id")
     for c in _sample(real["cards"], "order"):
         r, f = orders.loc[int(c.key["order_id"])], c.fields
-        assert f["scheduled_days"] == r["Days for shipment (scheduled)"] and f["delivery_status"] == r["Delivery Status"]
-        assert f["shipping_mode"] == r["Shipping Mode"] and f["market"] == r["Market"] and f["region"] == r["Order Region"]
-        assert f["order_date"] == r["order date (DateOrders)"].strftime("%Y-%m-%d")
+        assert f["scheduled_days"] == r["days_for_shipment_scheduled"] and f["delivery_status"] == r["delivery_status"]
+        assert f["shipping_mode"] == r["shipping_mode"] and f["market"] == r["market"] and f["region"] == r["order_region"]
+        assert f["order_date"] == r["order_date"].strftime("%Y-%m-%d")
         assert f["is_cancelled"] == bool(r["is_cancelled"])
         if r["is_cancelled"]:
             assert f["delay_days"] is None and f["late"] is None
-            assert f["recorded_real_days"] == r["Days for shipping (real)"] and f["recorded_delay_days"] == r["raw_delay_days"]
+            assert f["recorded_real_days"] == r["days_for_shipping_real"] and f["recorded_delay_days"] == r["raw_delay_days"]
         else:
-            assert f["real_days"] == r["Days for shipping (real)"] and f["delay_days"] == r["Days for shipping (real)"] - r["Days for shipment (scheduled)"]
+            assert f["real_days"] == r["days_for_shipping_real"] and f["delay_days"] == r["days_for_shipping_real"] - r["days_for_shipment_scheduled"]
             assert f["late"] == (f["delay_days"] > 0)
 
 
@@ -277,22 +287,35 @@ def test_all_cancelled_orders_have_cards_with_raw_values(real):
     by_id = {c.key["order_id"]: c for c in real["cards"] if c.card_type == "order"}
     assert len(by_id) == len(ords)
     can = ords[ords.is_cancelled]
-    assert len(can) > 0 and all(by_id[str(i)].fields["delay_days"] is None for i in can["Order Id"])
+    assert len(can) > 0 and all(by_id[str(i)].fields["delay_days"] is None for i in can["order_id"])
 
 
 @needs_cards
 def test_50_random_region_month_cards_match_direct_queries(real):
-    o = real["orders"]
-    month = o["order date (DateOrders)"].dt.strftime("%Y-%m")
+    o = real["all_orders"]  # the region x month cards aggregate every order, not just the sampled ones
+    month = o["order_date"].dt.strftime("%Y-%m")
     for c in _sample(real["cards"], "region_month"):
         k, f = c.key, c.fields
-        g = o[(o["Order Region"] == k["region"]) & (month == k["month"])]
+        g = o[(o["order_region"] == k["region"]) & (month == k["month"])]
         ok = g[~g.is_cancelled]
         assert f["orders"] == len(g) and f["cancelled_orders"] == g.is_cancelled.sum()
         assert f["late_orders"] == int((ok.raw_delay_days > 0).sum())
         assert f["late_rate"] == pytest.approx((ok.raw_delay_days > 0).mean(), abs=1e-4)
         for mode in SHIPPING_MODES:
-            m = ok[ok["Shipping Mode"] == mode].raw_delay_days
+            m = ok[ok["shipping_mode"] == mode].raw_delay_days
             expect = None if m.empty else float(m.mean())
             got = f[_mode_field(mode)]
-            assert (got is None) if expect is None else got == pytest.approx(expect, abs=0.005)
+            assert (got is None) if expect is None else got == pytest.approx(expect, abs=0.0051)  # card values are rounded to 2 decimals; an exact half-step must pass
+
+
+@needs_cards
+def test_region_month_cards_are_built_from_all_orders_not_just_the_sample(real):
+    from src.config import load_config
+    min_orders = load_config()["cards"]["region_month_min_orders"]
+    allo, sample = real["all_orders"], real["orders"]
+    cells = allo.groupby(["order_region", allo["order_date"].dt.strftime("%Y-%m")]).size()
+    cards = [c for c in real["cards"] if c.card_type == "region_month"]
+    assert len(cards) == int((cells >= min_orders).sum())                     # one card per region-month cell of ALL orders
+    assert sum(c.fields["orders"] for c in cards) > len(sample)                 # more orders than the sample holds
+    assert sum(c.fields["orders"] for c in cards) <= len(allo)
+    assert len([c for c in real["cards"] if c.card_type == "order"]) == len(sample)  # order cards stay one per sampled order
