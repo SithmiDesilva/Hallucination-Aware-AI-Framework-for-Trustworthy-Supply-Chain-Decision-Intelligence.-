@@ -163,7 +163,8 @@ def _window_weeks(long: pd.DataFrame, n_weeks: int) -> pd.DataFrame:
     wk = wk[wk["n"] == 7].sort_values("week_start").tail(n_weeks)
 
     def events(g: pd.DataFrame) -> str:
-        names = sorted(set(g["event_name_1"].dropna()) | set(g["event_name_2"].dropna()))
+        # the preprocessed calendar uses the string "None" for no event; the card says "none" when a week has no event
+        names = sorted({n for n in (*g["event_name_1"], *g["event_name_2"]) if isinstance(n, str) and n != "None"})
         return "; ".join(names) if names else "none"
 
     wk["events"] = days.groupby("wm_yr_wk").apply(events, include_groups=False)
@@ -229,23 +230,23 @@ def m5_month_cards(long: pd.DataFrame, sim: pd.DataFrame, n_months: int = 12) ->
 # ----------------------------------------------------------------------------- DataCo
 def dataco_order_cards(orders: pd.DataFrame) -> list[Card]:
     cards = []
-    for _, r in orders.sort_values("Order Id").iterrows():
-        key = {"order_id": str(int(r["Order Id"]))}
+    for _, r in orders.sort_values("order_id").iterrows():
+        key = {"order_id": str(int(r["order_id"]))}
         cancelled = bool(r["is_cancelled"])
         fields = {
-            "order_date": r["order date (DateOrders)"].strftime("%Y-%m-%d"),
-            "shipping_date": r["shipping date (DateOrders)"].strftime("%Y-%m-%d"),
-            "shipping_mode": r["Shipping Mode"], "market": r["Market"], "region": r["Order Region"],
-            "delivery_status": r["Delivery Status"], "scheduled_days": int(r["Days for shipment (scheduled)"]),
+            "order_date": r["order_date"].strftime("%Y-%m-%d"),
+            "shipping_date": r["shipping_date"].strftime("%Y-%m-%d"),
+            "shipping_mode": r["shipping_mode"], "market": r["market"], "region": r["order_region"],
+            "delivery_status": r["delivery_status"], "scheduled_days": int(r["days_for_shipment_scheduled"]),
             "is_cancelled": cancelled,
         }
         if cancelled:
-            fields["recorded_real_days"] = int(r["Days for shipping (real)"])
+            fields["recorded_real_days"] = int(r["days_for_shipping_real"])
             fields["recorded_delay_days"] = int(r["raw_delay_days"])
             fields["delay_days"] = None
             fields["late"] = None
         else:
-            fields["real_days"] = int(r["Days for shipping (real)"])
+            fields["real_days"] = int(r["days_for_shipping_real"])
             fields["delay_days"] = int(r["shipping_delay_days"])
             fields["late"] = bool(r["late"])
         cards.append(_card("dataco", "order", key, fields))
@@ -253,9 +254,11 @@ def dataco_order_cards(orders: pd.DataFrame) -> list[Card]:
 
 
 def dataco_region_month_cards(orders: pd.DataFrame, min_orders: int = 10) -> list[Card]:
-    d = orders.assign(month=orders["order date (DateOrders)"].dt.to_period("M").astype(str))
+    """Region x month aggregates from ALL orders passed in (build_cards passes every order, not just the sampled ones):
+    counts include cancelled orders, rates and mean delays use the non-cancelled (delivered) orders only."""
+    d = orders.assign(month=orders["order_date"].dt.to_period("M").astype(str))
     cards = []
-    for (region, month), g in d.groupby(["Order Region", "month"], sort=True):
+    for (region, month), g in d.groupby(["order_region", "month"], sort=True):
         if len(g) < min_orders:
             continue
         ok = g[~g["is_cancelled"]]
@@ -263,7 +266,7 @@ def dataco_region_month_cards(orders: pd.DataFrame, min_orders: int = 10) -> lis
         fields = {"orders": len(g), "cancelled_orders": int(g["is_cancelled"].sum()), "late_orders": late_orders,
                   "late_rate": round(late_orders / len(ok), 4) if len(ok) else None}
         for mode in SHIPPING_MODES:
-            m = ok.loc[ok["Shipping Mode"] == mode, "shipping_delay_days"]
+            m = ok.loc[ok["shipping_mode"] == mode, "shipping_delay_days"]
             fields[_mode_field(mode)] = round(float(m.mean()), 2) if len(m) else None
         cards.append(_card("dataco", "region_month", {"region": region, "month": month}, fields))
     return cards
@@ -275,9 +278,10 @@ def build_cards(cfg: dict | None = None) -> list[Card]:
     c = cfg["cards"]
     long = pd.read_parquet(PROCESSED / "m5_long.parquet")
     sim = pd.read_parquet(PROCESSED / "m5_sim.parquet")
-    orders = pd.read_parquet(PROCESSED / "dataco_orders.parquet")
+    orders = pd.read_parquet(PROCESSED / "dataco_orders.parquet")          # the sample: one order card each
+    all_orders = pd.read_parquet(PROCESSED / "dataco_orders_all.parquet")  # every order: the region x month aggregates
     cards = (m5_week_cards(long, sim, c["m5_weeks"]) + m5_month_cards(long, sim, c["m5_months"])
-             + dataco_order_cards(orders) + dataco_region_month_cards(orders, c["region_month_min_orders"]))
+             + dataco_order_cards(orders) + dataco_region_month_cards(all_orders, c["region_month_min_orders"]))
     ids = [x.card_id for x in cards]
     if len(set(ids)) != len(ids):
         raise ValueError("duplicate card IDs")
