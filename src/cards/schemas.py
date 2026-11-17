@@ -23,6 +23,7 @@ Source = Literal["m5", "dataco"]
 CardType = Literal["item_store_week", "item_store_month", "order", "region_month"]
 Domain = Literal["inventory", "delivery"]
 Split = Literal["dev", "test", "conflict"]
+Scope = Literal["cards", "dataset"]
 QuestionType = Literal["lookup", "aggregation", "comparison", "policy_outcome", "recommendation"]
 UnanswerableType = Literal["nonexistent_entity", "out_of_range_date", "absent_attribute", "partial_evidence"]
 FactType = Literal["numerical", "temporal", "entity", "categorical", "boolean"]
@@ -81,14 +82,20 @@ class Question(_Model):
     hard_negative_card_ids: list[str] = []
     withheld_card_ids: list[str] = []  # removed from retrieval for this question only (partial evidence)
     tags: Tags = Tags()
+    # "cards": the answer is in the evidence cards. "dataset": the real answer comes from the FULL raw dataset
+    # (whole-period totals and rankings), which the cards do not contain, so gold_card_ids may be empty and a
+    # RAG system is expected to abstain. B0 (no evidence at all) can be tried on either kind.
+    scope: Scope = "cards"
 
     @model_validator(mode="after")
     def _consistent(self):
+        if self.scope == "dataset" and not self.answerable:
+            raise ValueError("a dataset-wide question is answerable from the full dataset")
         if self.answerable:
             if self.unanswerable_type is not None:
                 raise ValueError("an answerable question cannot have an unanswerable_type")
-            if not self.gold_facts or not self.gold_card_ids:
-                raise ValueError("an answerable question needs gold_facts and gold_card_ids")
+            if not self.gold_facts or (self.scope == "cards" and not self.gold_card_ids):
+                raise ValueError("an answerable question needs gold_facts and (for card questions) gold_card_ids")
         elif self.unanswerable_type is None:
             raise ValueError("an unanswerable question needs an unanswerable_type")
         if (self.unanswerable_type == "partial_evidence") != bool(self.withheld_card_ids):
