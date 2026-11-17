@@ -14,9 +14,9 @@ from src.data.load_dataco import CANCELLED_STATUS
 
 def make_orders():
     return pd.DataFrame({
-        "Order Id": range(1, 7),
-        "Market": ["A", "A", "A", "B", "B", "B"],
-        "Shipping Mode": ["X", "X", "Y", "X", "X", "X"],
+        "order_id": range(1, 7),
+        "market": ["A", "A", "A", "B", "B", "B"],
+        "shipping_mode": ["X", "X", "Y", "X", "X", "X"],
         "is_cancelled": [False, False, True, False, True, False],
         "late": pd.array([True, False, pd.NA, True, pd.NA, True], dtype="boolean"),
         "shipping_delay_days": pd.array([2, -1, pd.NA, 1, pd.NA, 3], dtype="Int64"),
@@ -25,12 +25,12 @@ def make_orders():
 
 def test_dataco_summary_totals_and_cancelled_exclusion():
     s = dataco_summary(make_orders())
-    groups, total = s[s["Market"] != "All"], s[s["Market"] == "All"].iloc[0]
+    groups, total = s[s["market"] != "All"], s[s["market"] == "All"].iloc[0]
     assert groups["orders"].sum() == total["orders"] == 6
     assert groups["cancelled"].sum() == total["cancelled"] == 2
     assert total["late_rate"] == pytest.approx(3 / 4)            # 4 non-cancelled orders, 3 late
     assert total["mean_delay_days"] == pytest.approx((2 - 1 + 1 + 3) / 4)
-    ay = s[(s["Market"] == "A") & (s["Shipping Mode"] == "Y")].iloc[0]
+    ay = s[(s["market"] == "A") & (s["shipping_mode"] == "Y")].iloc[0]
     assert ay["orders"] == 1 and ay["cancelled"] == 1 and pd.isna(ay["late_rate"])  # nothing delivered
 
 
@@ -72,10 +72,10 @@ def test_dataco_full_summary_matches_raw_counts():
     from src.data.load_dataco import clean, to_orders
     raw = _raw_dataco()
     s = dataco_summary(to_orders(clean(raw)))
-    total = s[s["Market"] == "All"].iloc[0]
+    total = s[s["market"] == "All"].iloc[0]
     assert total["orders"] == raw["Order Id"].nunique()
     assert total["cancelled"] == raw.loc[raw["Delivery Status"] == CANCELLED_STATUS, "Order Id"].nunique()
-    assert s[s["Market"] != "All"]["orders"].sum() == total["orders"]
+    assert s[s["market"] != "All"]["orders"].sum() == total["orders"]
 
 
 def test_m5_summary_matches_raw_sales():
