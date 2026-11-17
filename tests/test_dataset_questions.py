@@ -10,15 +10,16 @@ import numpy as np
 import pandas as pd
 import pytest
 
+from src.bench import dataset_questions as dq
 from src.bench.dataset_questions import (
-    OUT, PERIOD_DAYS, build, disagreements, fmt, month_label, pct, same, tidy, unique_top,
+    OUT, PERIOD_DAYS, build, disagreements, fmt, m5_check_facts, m5_facts, mismatches, month_label, pct, same, tidy, unique_top,
 )
 from src.cards.schemas import Question, read_jsonl
 from src.config import RAW
 
 FILE = OUT / "b0_dataset_wide_v1.jsonl"
 needs_data = pytest.mark.skipif(
-    not (FILE.exists() and (RAW / "m5" / "sales_train_validation.csv").exists() and (RAW / "dataco" / "DataCoSupplyChainDataset.csv").exists()),
+    not (FILE.exists() and (RAW / "m5" / "sales_train_evaluation.csv").exists() and (RAW / "dataco" / "DataCoSupplyChainDataset.csv").exists()),
     reason="dataset-wide file or raw data not available")
 
 
@@ -44,6 +45,33 @@ def test_disagreements_catches_any_difference():
     assert disagreements(a, {**a, "n": 4, "t": pd.DataFrame({"c": [2.0]})}) == ["n", "t"]
     assert disagreements(a, {**a, "extra": 1}) == ["extra"]
     assert same(1, 1) and not same(pd.Series([1]), pd.Series([2]))
+
+
+def tiny_m5(n_days=70):
+    rng = np.random.default_rng(5)
+    rows = []
+    for store, state in (("CA_1", "CA"), ("CA_2", "CA"), ("TX_1", "TX")):
+        for cat, dept in (("FOODS", "FOODS_1"), ("FOODS", "FOODS_2"), ("HOBBIES", "HOBBIES_1")):
+            for i in range(3):
+                rows.append({"item_id": f"{dept}_{i:03d}", "dept_id": dept, "cat_id": cat, "store_id": store, "state_id": state,
+                             **{f"d_{d}": int(v) for d, v in enumerate(rng.poisson(3, n_days), 1)}})
+    dates = pd.date_range("2011-01-29", periods=n_days)
+    cal = pd.DataFrame({"d": [f"d_{i}" for i in range(1, n_days + 1)], "date": dates.strftime("%Y-%m-%d"),
+                        "event_name_1": [None] * n_days, "event_name_2": [None] * n_days, "snap_CA": [0] * n_days})
+    return pd.DataFrame(rows), cal
+
+
+def test_the_two_m5_methods_agree_and_a_changed_cell_is_caught(monkeypatch):
+    monkeypatch.setattr(dq, "PERIOD_DAYS", 70)
+    sales, cal = tiny_m5()
+    full, check = dq.m5_facts(sales, cal), dq.m5_check_facts(sales, cal)
+    assert set(check) <= set(full) and "store_month" in check and len(check["store_month"]) >= 2  # Feb and Mar are complete months
+    assert dq.mismatches(full, check) == []
+    altered = sales.copy()
+    altered.loc[0, "d_30"] += 1  # one extra unit on one day of one series
+    bad = dq.mismatches(full, dq.m5_check_facts(altered, cal))
+    assert {"store_total", "state_total", "cat_total", "dept_total", "item_total", "daily"} <= set(bad)
+    assert dq.mismatches({"a": 1}, {"b": 2}) == ["b"]
 
 
 # ----------------------------------------------------------------------------- the shipped file
@@ -102,7 +130,7 @@ def test_the_file_is_in_sync_with_the_generator(qs):
 # ----------------------------------------------------------------------------- brute force from the raw CSVs
 @pytest.fixture(scope="module")
 def m5():
-    sales = pd.read_csv(RAW / "m5" / "sales_train_validation.csv")
+    sales = pd.read_csv(RAW / "m5" / "sales_train_evaluation.csv")
     cal = pd.read_csv(RAW / "m5" / "calendar.csv")
     return sales, cal, [f"d_{i}" for i in range(1, PERIOD_DAYS + 1)]
 

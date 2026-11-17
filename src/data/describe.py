@@ -25,8 +25,8 @@ def dataco_summary(orders: pd.DataFrame) -> pd.DataFrame:
             "mean_delay_days": g["shipping_delay_days"].mean(),
         })
 
-    rows = [{"Market": m, "Shipping Mode": s, **agg(g)} for (m, s), g in orders.groupby(["Market", "Shipping Mode"])]
-    rows.append({"Market": "All", "Shipping Mode": "All", **agg(orders)})
+    rows = [{"market": m, "shipping_mode": s, **agg(g)} for (m, s), g in orders.groupby(["market", "shipping_mode"])]
+    rows.append({"market": "All", "shipping_mode": "All", **agg(orders)})
     out = pd.DataFrame(rows)
     out[["orders", "cancelled"]] = out[["orders", "cancelled"]].astype(int)
     return out.round({"late_rate": 3, "mean_delay_days": 3})

@@ -12,7 +12,7 @@ import json
 import pandas as pd
 
 from src.config import ROOT, load_config
-from src.data.load_dataco import CANCELLED_STATUS, clean, load_raw, sample_orders, to_orders
+from src.data.load_dataco import CANCELLED_STATUS, STATUS_SIGN, clean, load_raw, sample_orders, to_orders
 
 OUT = ROOT / "results" / "data_validation"
 CANCELLED_ORDER_STATUSES = {"CANCELED", "SUSPECTED_FRAUD"}
@@ -35,14 +35,17 @@ def check_delay_sign(orders: pd.DataFrame, scope: str) -> list[dict]:
 
 
 def check_late_flag(orders: pd.DataFrame, items: pd.DataFrame | None, scope: str) -> list[dict]:
-    """Check 2: for non-cancelled orders, Late_delivery_risk == (real > scheduled)."""
+    """Check 2: for non-cancelled orders, late (delay > 0) == Late_delivery_risk, and Delivery Status is the sign of the delay."""
     nc = orders[~orders["is_cancelled"]]
-    agree = (nc["Late_delivery_risk"] == 1) == (nc["raw_delay_days"] > 0)
+    agree = (nc["late_delivery_risk"] == 1) == (nc["raw_delay_days"] > 0)
     rows = [_row("2a", "non-cancelled orders: Late_delivery_risk == (real > scheduled)", scope, len(nc),
                  f"{agree.mean() * 100:.4f}%", f"{int(agree.sum())}/{len(nc)} agree")]
+    status_ok = nc["delivery_status"].map(STATUS_SIGN) == nc["raw_delay_days"].apply(lambda d: (d > 0) - (d < 0))
+    rows.append(_row("2c", "non-cancelled orders: Delivery Status is the sign of the delay (Late > 0, Advance < 0, On time = 0)", scope, len(nc),
+                     f"{status_ok.mean() * 100:.4f}%", f"{int(status_ok.sum())}/{len(nc)} agree"))
     if items is not None:
-        inc = items[items["Delivery Status"] != CANCELLED_STATUS]
-        ia = (inc["Late_delivery_risk"] == 1) == (inc["Days for shipping (real)"] > inc["Days for shipment (scheduled)"])
+        inc = items[items["delivery_status"] != CANCELLED_STATUS]
+        ia = (inc["late_delivery_risk"] == 1) == (inc["days_for_shipping_real"] > inc["days_for_shipment_scheduled"])
         rows.append(_row("2b", "same check at item-row level", scope, len(inc),
                          f"{ia.mean() * 100:.4f}%", f"{int(ia.sum())}/{len(inc)} agree"))
     return rows
@@ -50,8 +53,8 @@ def check_late_flag(orders: pd.DataFrame, items: pd.DataFrame | None, scope: str
 
 def check_cancelled_definition(orders: pd.DataFrame, scope: str) -> tuple[list[dict], pd.DataFrame]:
     """Check 3: Delivery Status 'Shipping canceled' vs Order Status in {CANCELED, SUSPECTED_FRAUD}."""
-    by_delivery = orders["Delivery Status"] == CANCELLED_STATUS
-    by_order = orders["Order Status"].isin(CANCELLED_ORDER_STATUSES)
+    by_delivery = orders["delivery_status"] == CANCELLED_STATUS
+    by_order = orders["order_status"].isin(CANCELLED_ORDER_STATUSES)
     both, only_d, only_o = (by_delivery & by_order).sum(), (by_delivery & ~by_order).sum(), (~by_delivery & by_order).sum()
     rows = [
         _row("3a", "cancelled by both Delivery Status and Order Status", scope, both, int(both)),
@@ -60,7 +63,7 @@ def check_cancelled_definition(orders: pd.DataFrame, scope: str) -> tuple[list[d
         _row("3d", "the two definitions agree on every order", scope, len(orders),
              bool(only_d == 0 and only_o == 0)),
     ]
-    crosstab = pd.crosstab(orders["Order Status"], orders["Delivery Status"])
+    crosstab = pd.crosstab(orders["order_status"], orders["delivery_status"])
     return rows, crosstab
 
 
